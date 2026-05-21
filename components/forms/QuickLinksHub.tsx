@@ -4,9 +4,31 @@ import React, { useState } from 'react'
 import { QuickLinkModal } from './QuickLinkModal'
 import { useTilt } from '@/hooks/useTilt'
 import type { FormType } from '@/types'
+import {
+  UserCheck,
+  MessageCircle,
+  Star,
+  Sparkles,
+  RotateCcw,
+  Heart,
+  BookOpen,
+  Users,
+  Globe,
+  Flame,
+  Shield,
+  MapPin,
+  Smile,
+  Award,
+  Mic,
+  Users2,
+  Baby,
+  Layers,
+} from 'lucide-react'
+
+import type { LucideIcon } from 'lucide-react'
 
 interface QuickLink {
-  icon: string
+  Icon: LucideIcon
   title: string
   description: string
   formType: FormType
@@ -14,24 +36,24 @@ interface QuickLink {
 }
 
 const LINKS: QuickLink[] = [
-  { icon: '✝️',  title: 'Membership',            description: 'Become an official member of TTC',              formType: 'membership',            color: '#153093' },
-  { icon: '🤝',  title: 'Counseling',             description: 'Request one-on-one pastoral counseling',         formType: 'counseling',            color: '#22b573' },
-  { icon: '⭐',  title: 'Feedback Survey',         description: 'Share your experience with TTC',                formType: 'feedback',              color: '#f7931e' },
-  { icon: '👋',  title: 'First Timer',             description: 'New here? Let us welcome you properly',          formType: 'first_timer',           color: '#4ea8f9' },
-  { icon: '🔄',  title: 'Second Timer',            description: "Back again? We'd love to connect",               formType: 'second_timer',          color: '#153093' },
-  { icon: '🙋',  title: 'Volunteer',               description: 'Offer your time and gifts to serve',             formType: 'volunteer',             color: '#22b573' },
-  { icon: '📚',  title: 'Membership Class',        description: 'Sign up for our new members class',              formType: 'membership_class',      color: '#f7931e' },
-  { icon: '👥',  title: 'Ministry Group Class',    description: 'Begin your ministry group journey',              formType: 'ministry_group_class',  color: '#4ea8f9' },
-  { icon: '🌐',  title: 'Online Community',        description: 'Join TTC digital community groups',              formType: 'online_community',      color: '#153093' },
-  { icon: '💍',  title: 'Pre-Marital Counseling',  description: 'Prepare well for your marriage',                 formType: 'premarital_counseling', color: '#22b573' },
-  { icon: '💑',  title: 'Post-Marital Counseling', description: 'Strengthen and restore your marriage',           formType: 'postmarital_counseling',color: '#f7931e' },
-  { icon: '🙏',  title: 'Prayer Request',          description: 'Submit a prayer request to our team',            formType: 'prayer_request',        color: '#4ea8f9' },
-  { icon: '🎉',  title: 'Testimony',               description: 'Share what God has done for you',                formType: 'testimony',             color: '#153093' },
-  { icon: '❤️',  title: 'Welfare',                 description: 'Request welfare support from TTC',               formType: 'welfare',               color: '#22b573' },
-  { icon: '🏙️',  title: 'TIC — My City',           description: 'Bring TTC to your city or nation',              formType: 'tic_city',              color: '#f7931e' },
-  { icon: '👧',  title: 'Transformation Kids',     description: 'Register your child with TTC Kids',              formType: 'transformation_kids',   color: '#4ea8f9' },
-  { icon: '🎖️',  title: 'Elders Forum',            description: 'Join the TTC Elders Forum',                      formType: 'elders_forum',          color: '#153093' },
-  { icon: '⭕',  title: 'Circle Group',            description: 'Join a small intentional fellowship circle',     formType: 'circle_group',          color: '#22b573' },
+  { Icon: UserCheck,    title: 'Membership',            description: 'Become an official member of TTC',              formType: 'membership',            color: '#153093' },
+  { Icon: MessageCircle,title: 'Counseling',             description: 'Request one-on-one pastoral counseling',         formType: 'counseling',            color: '#22b573' },
+  { Icon: Star,         title: 'Feedback Survey',         description: 'Share your experience with TTC',                formType: 'feedback',              color: '#f7931e' },
+  { Icon: Sparkles,     title: 'First Timer',             description: 'New here? Let us welcome you properly',          formType: 'first_timer',           color: '#4ea8f9' },
+  { Icon: RotateCcw,    title: 'Second Timer',            description: "Back again? We'd love to connect",               formType: 'second_timer',          color: '#153093' },
+  { Icon: Heart,        title: 'Volunteer',               description: 'Offer your time and gifts to serve',             formType: 'volunteer',             color: '#22b573' },
+  { Icon: BookOpen,     title: 'Membership Class',        description: 'Sign up for our new members class',              formType: 'membership_class',      color: '#f7931e' },
+  { Icon: Users,        title: 'Ministry Group Class',    description: 'Begin your ministry group journey',              formType: 'ministry_group_class',  color: '#4ea8f9' },
+  { Icon: Globe,        title: 'Online Community',        description: 'Join TTC digital community groups',              formType: 'online_community',      color: '#153093' },
+  { Icon: Smile,        title: 'Pre-Marital Counseling',  description: 'Prepare well for your marriage',                 formType: 'premarital_counseling', color: '#22b573' },
+  { Icon: Users2,       title: 'Post-Marital Counseling', description: 'Strengthen and restore your marriage',           formType: 'postmarital_counseling',color: '#f7931e' },
+  { Icon: Flame,        title: 'Prayer Request',          description: 'Submit a prayer request to our team',            formType: 'prayer_request',        color: '#4ea8f9' },
+  { Icon: Mic,          title: 'Testimony',               description: 'Share what God has done for you',                formType: 'testimony',             color: '#153093' },
+  { Icon: Shield,       title: 'Welfare',                 description: 'Request welfare support from TTC',               formType: 'welfare',               color: '#22b573' },
+  { Icon: MapPin,       title: 'TIC — My City',           description: 'Bring TTC to your city or nation',              formType: 'tic_city',              color: '#f7931e' },
+  { Icon: Baby,         title: 'Transformation Kids',     description: 'Register your child with TTC Kids',              formType: 'transformation_kids',   color: '#4ea8f9' },
+  { Icon: Award,        title: 'Elders Forum',            description: 'Join the TTC Elders Forum',                      formType: 'elders_forum',          color: '#153093' },
+  { Icon: Layers,       title: 'Circle Group',            description: 'Join a small intentional fellowship circle',     formType: 'circle_group',          color: '#22b573' },
 ]
 
 function QuickLinkCard({ link, onClick }: { link: QuickLink; onClick: () => void }) {
@@ -55,7 +77,7 @@ function QuickLinkCard({ link, onClick }: { link: QuickLink; onClick: () => void
 
       {/* Icon */}
       <div
-        className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0 relative z-10"
+        className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 relative z-10"
         style={{
           background: `${link.color}15`,
           transform: isHovered ? 'translateZ(16px) scale(1.1)' : 'translateZ(0) scale(1)',
@@ -63,7 +85,15 @@ function QuickLinkCard({ link, onClick }: { link: QuickLink; onClick: () => void
           boxShadow: isHovered ? `0 4px 16px ${link.color}30` : 'none',
         }}
       >
-        {link.icon}
+        <link.Icon
+          size={20}
+          strokeWidth={1.8}
+          style={{
+            color: link.color,
+            transition: 'transform 0.35s cubic-bezier(0.23,1,0.32,1)',
+            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+          }}
+        />
       </div>
 
       {/* Text */}

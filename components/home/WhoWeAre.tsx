@@ -15,11 +15,11 @@ const STEPS = [
 ]
 
 const GALLERY = [
+  '/images/events/worship-1.jpg',
+  '/images/gallery/gallery-5.jpeg',
   '/images/gallery/gallery-13.jpg',
-  '/images/gallery/gallery-14.jpg',
-  '/images/gallery/gallery-15.jpg',
-  '/images/gallery/gallery-16.jpg',
-  '/images/gallery/gallery-17.jpg',
+  '/images/events/service-3.jpg',
+  '/images/gallery/gallery-7.jpeg',
 ]
 
 // Parallax depths for each photo

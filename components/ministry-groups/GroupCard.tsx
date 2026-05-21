@@ -2,9 +2,21 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Music2, Compass, BookOpen, Zap, Globe, Clapperboard, ClipboardList } from 'lucide-react'
 import { useTilt } from '@/hooks/useTilt'
 import type { MinistryGroup } from '@/types'
+
+import type { LucideIcon } from 'lucide-react'
+
+const GROUP_ICONS: Record<string, LucideIcon> = {
+  'music-group': Music2,
+  'locomotive-group': Compass,
+  'transformative-word-group': BookOpen,
+  'tremendous-power-group': Zap,
+  'community-impact-group': Globe,
+  'media-operations-group': Clapperboard,
+  'administrative-support-group': ClipboardList,
+}
 
 interface GroupCardProps {
   group: MinistryGroup
@@ -18,6 +30,8 @@ export function GroupCard({ group, index }: GroupCardProps) {
     speed: 400,
     glare: true,
   })
+
+  const Icon = GROUP_ICONS[group.slug] || Zap
 
   return (
     <div
@@ -47,7 +61,7 @@ export function GroupCard({ group, index }: GroupCardProps) {
         }}
       />
 
-      {/* Index watermark — rises up on hover */}
+      {/* Index watermark */}
       <span
         className="absolute top-4 right-5 font-heading font-black text-5xl leading-none select-none pointer-events-none"
         aria-hidden="true"
@@ -62,16 +76,25 @@ export function GroupCard({ group, index }: GroupCardProps) {
         {String(index + 1).padStart(2, '0')}
       </span>
 
-      {/* Icon — bounces on hover */}
+      {/* Icon */}
       <div
-        className="relative z-10 text-4xl mb-5 w-14 h-14 rounded-2xl flex items-center justify-center touch-icon-pop"
+        className="relative z-10 mb-5 w-14 h-14 rounded-2xl flex items-center justify-center touch-icon-pop"
         style={{
           background: `${group.color}15`,
           transform: isHovered ? 'translateZ(20px) scale(1.1)' : 'translateZ(0) scale(1)',
           transition: 'transform 0.4s cubic-bezier(0.23,1,0.32,1)',
+          boxShadow: isHovered ? `0 4px 20px ${group.color}30` : 'none',
         }}
       >
-        {group.icon}
+        <Icon
+          size={24}
+          strokeWidth={1.7}
+          style={{
+            color: group.color,
+            transition: 'transform 0.4s cubic-bezier(0.23,1,0.32,1)',
+            transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+          }}
+        />
       </div>
 
       {/* Name */}
@@ -96,7 +119,7 @@ export function GroupCard({ group, index }: GroupCardProps) {
         </p>
       )}
 
-      {/* Separator — expands on hover */}
+      {/* Separator */}
       <div
         className="relative z-10 h-0.5 mb-4 touch-separator-pulse"
         style={{

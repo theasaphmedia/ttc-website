@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { QuickLinksHub } from '@/components/forms/QuickLinksHub'
+import { QuickLinksHeroGrid } from '@/components/quick-links/QuickLinksHeroGrid'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -54,14 +55,7 @@ export default function QuickLinksPage() {
                 Browse All Forms →
               </a>
             </div>
-            <div className="hidden lg:grid grid-cols-3 gap-3">
-              {['🙋','📿','🤲','🎤','🏥','🧑‍🤝‍🧑','🙌','📖','🌍','🎉','👴','🔗'].map((icon, i) => (
-                <div key={i} className="flex items-center justify-center h-16 rounded-xl touch-float"
-                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', fontSize: '1.6rem', animationDelay: `${i * 0.1}s` }}>
-                  {icon}
-                </div>
-              ))}
-            </div>
+            <QuickLinksHeroGrid />
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />
