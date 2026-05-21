@@ -211,9 +211,36 @@ export function MissionVision() {
             </span>
           </div>
 
-          {/* Three pillars with tilt */}
+          {/* Three pillars — mobile swipe / desktop grid */}
+
+          {/* Mobile: horizontal swipe */}
+          <div className="md:hidden -mx-4 px-4 mb-20">
+            <div
+              className="flex gap-3 pb-4"
+              style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {PILLARS.map((p, i) => (
+                <div
+                  key={p.word}
+                  style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(85vw - 1rem)' }}
+                >
+                  <div
+                    className="rounded-3xl overflow-hidden h-full"
+                    style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}
+                  >
+                    <PillarCard p={p} i={i} visible={pillarsVisible} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
+              ← Swipe to explore →
+            </p>
+          </div>
+
+          {/* Desktop: side-by-side */}
           <div
-            className="grid md:grid-cols-3 mb-24 md:mb-32 rounded-3xl overflow-hidden"
+            className="hidden md:grid md:grid-cols-3 mb-24 md:mb-32 rounded-3xl overflow-hidden"
             style={{ border: '1px solid rgba(255,255,255,0.08)' }}
           >
             {PILLARS.map((p, i) => (

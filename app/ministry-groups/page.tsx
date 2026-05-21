@@ -76,7 +76,28 @@ export default function MinistryGroupsPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile: horizontal swipe */}
+          <div className="sm:hidden -mx-4 px-4">
+            <div
+              className="flex gap-4 pb-4"
+              style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {MINISTRY_GROUPS.map((group, i) => (
+                <div
+                  key={group.slug}
+                  style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(82vw - 1rem)' }}
+                >
+                  <GroupCard group={group} index={i} />
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1 mb-4" style={{ color: 'var(--text-muted)' }}>
+              ← Swipe to explore all 7 groups →
+            </p>
+          </div>
+
+          {/* Tablet + Desktop: grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {MINISTRY_GROUPS.map((group, i) => (
               <GroupCard key={group.slug} group={group} index={i} />
             ))}

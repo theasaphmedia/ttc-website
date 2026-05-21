@@ -68,10 +68,10 @@ export function Footer() {
       <WaveDivider fillColor="#0d1117" className="relative -mt-1" variant="organic" />
 
       <div className="container-ttc pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
 
           {/* Brand column */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 md:col-span-1 lg:col-span-1">
             <TTCLogoWhite />
             <p
               className="mt-5 text-sm leading-relaxed"
@@ -137,7 +137,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h4
               className="font-heading font-bold text-sm tracking-widest uppercase mb-5"
               style={{ color: '#f7931e' }}

@@ -148,12 +148,34 @@ export function MinistryGroupsTeaser() {
           />
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {/* ── Mobile: horizontal swipe ── */}
+        <div className="md:hidden -mx-4 px-4">
+          <div
+            className="flex gap-3 pb-4"
+            style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style>{`.mg-swipe::-webkit-scrollbar{display:none}`}</style>
+            {GROUPS.map((group, i) => (
+              <div
+                key={group.slug}
+                style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(80vw - 1rem)' }}
+              >
+                <TeaserCard group={group} index={i} />
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1 mb-6" style={{ color: 'var(--text-muted)' }}>
+            ← Swipe to explore →
+          </p>
+        </div>
+
+        {/* ── Desktop: grid ── */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {GROUPS.map((group, i) => (
             <TeaserCard key={group.slug} group={group} index={i} />
           ))}
 
-          {/* CTA card */}
+          {/* CTA card — desktop only */}
           <AnimatedSection variant="fadeUp" delay={GROUPS.length * 60}>
             <div
               className="flex flex-col items-center justify-center p-6 rounded-2xl text-center h-full min-h-[180px] relative overflow-hidden"
@@ -162,7 +184,6 @@ export function MinistryGroupsTeaser() {
                 border: '1px solid rgba(255,255,255,0.05)',
               }}
             >
-              {/* Animated shimmer */}
               <div
                 className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
                 style={{ background: 'radial-gradient(circle at 50% 50%, rgba(78,168,249,0.15) 0%, transparent 70%)' }}
@@ -184,7 +205,32 @@ export function MinistryGroupsTeaser() {
           </AnimatedSection>
         </div>
 
-        <div className="mt-10 flex justify-center">
+        {/* CTA card — mobile only, always below swipe */}
+        <div className="md:hidden mt-4">
+          <div
+            className="flex flex-col items-center justify-center p-6 rounded-2xl text-center relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #153093 0%, #0f2270 100%)',
+              border: '1px solid rgba(255,255,255,0.05)',
+            }}
+          >
+            <div className="mb-3 relative z-10 flex items-center justify-center w-12 h-12 rounded-2xl" style={{ background: 'rgba(247,147,30,0.2)' }}>
+              <Zap size={24} strokeWidth={1.7} style={{ color: '#f7931e' }} />
+            </div>
+            <p className="font-heading font-bold text-white text-sm mb-4 leading-tight relative z-10">
+              Not sure where you fit?
+            </p>
+            <Link
+              href="/ministry-groups"
+              className="px-4 py-2.5 rounded-full font-heading font-bold text-xs text-white relative z-10 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              style={{ background: '#f7931e', boxShadow: '0 4px 16px rgba(247,147,30,0.4)' }}
+            >
+              Explore All Groups
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8 flex justify-center">
           <Link
             href="/ministry-groups"
             className="btn-outline group transition-all duration-300 hover:-translate-y-0.5"

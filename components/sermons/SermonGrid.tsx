@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
-import { Search, RefreshCw, Music2 } from 'lucide-react'
+import { Search, RefreshCw } from 'lucide-react'
 import { SermonCard } from './SermonCard'
 import { SermonModal } from './SermonModal'
 import type { YouTubeSermon, SermonCategory } from '@/types'
@@ -130,33 +130,7 @@ export function SermonGrid() {
         </div>
       </div>
 
-      {/* Music video routing banner — appears when any videos are music type */}
-      {filtered.some(s => s.videoType === 'music') && (
-        <div
-          className="flex items-center justify-between gap-4 p-4 rounded-2xl mb-8"
-          style={{ background: 'linear-gradient(135deg, rgba(247,147,30,0.08) 0%, rgba(247,147,30,0.04) 100%)', border: '1px solid rgba(247,147,30,0.2)' }}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-              style={{ background: 'rgba(247,147,30,0.15)' }}
-            >
-              <Music2 size={16} style={{ color: '#f7931e' }} />
-            </div>
-            <p className="text-sm font-heading font-bold" style={{ color: 'var(--dark)' }}>
-              Some videos are worship music —{' '}
-              <span style={{ color: '#f7931e' }}>music videos have been moved to the Music section</span>
-            </p>
-          </div>
-          <Link
-            href="/#music"
-            className="shrink-0 px-4 py-2 rounded-full font-heading font-bold text-xs text-white transition-all duration-200 hover:-translate-y-0.5"
-            style={{ background: '#f7931e', boxShadow: '0 3px 12px rgba(247,147,30,0.3)' }}
-          >
-            Go to Music
-          </Link>
-        </div>
-      )}
+      
 
       {filtered.length === 0 ? (
         <p className="text-center py-20 text-sm" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
@@ -171,8 +145,28 @@ export function SermonGrid() {
             </div>
           )}
 
-          {/* Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Mobile: horizontal swipe */}
+          <div className="sm:hidden -mx-4 px-4">
+            <div
+              className="flex gap-4 pb-4"
+              style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {rest.map(sermon => (
+                <div
+                  key={sermon.id}
+                  style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(82vw - 1rem)' }}
+                >
+                  <SermonCard sermon={sermon} onPlay={setPlaying} />
+                </div>
+              ))}
+            </div>
+            <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1 mb-4" style={{ color: 'var(--text-muted)' }}>
+              ← Swipe to browse →
+            </p>
+          </div>
+
+          {/* Tablet + Desktop: grid */}
+          <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map(sermon => (
               <SermonCard key={sermon.id} sermon={sermon} onPlay={setPlaying} />
             ))}
