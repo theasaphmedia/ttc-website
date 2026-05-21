@@ -329,11 +329,33 @@ export function MusicSection() {
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {/* Mobile: horizontal swipe */}
+                  <div className="sm:hidden -mx-4 px-4">
+                    <div
+                      className="flex gap-4 pb-4"
+                      style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                      {musicVideos.map((v, i) => (
+                        <div
+                          key={v.id}
+                          style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(80vw - 1rem)' }}
+                        >
+                          <MusicVideoCard video={v} index={i} onPlay={setPlaying} />
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1 mb-2" style={{ color: 'var(--text-muted)' }}>
+                      ← Swipe to browse →
+                    </p>
+                  </div>
+
+                  {/* Tablet + Desktop: grid */}
+                  <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 gap-5">
                     {musicVideos.map((v, i) => (
                       <MusicVideoCard key={v.id} video={v} index={i} onPlay={setPlaying} />
                     ))}
                   </div>
+
                   <div className="mt-8 flex justify-center">
                     <a
                       href="https://www.youtube.com/@jointtc"
