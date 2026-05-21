@@ -25,7 +25,7 @@ function PillarCard({ p, i, visible }: { p: typeof PILLARS[0], i: number, visibl
     <div
       ref={ref}
       {...handlers}
-      className="relative p-10 md:p-12 flex flex-col overflow-hidden cursor-default"
+      className="relative p-7 md:p-10 lg:p-12 flex flex-col overflow-hidden cursor-default"
       style={{
         ...cardStyle,
         background: i === 1
@@ -41,7 +41,7 @@ function PillarCard({ p, i, visible }: { p: typeof PILLARS[0], i: number, visibl
           `opacity 0.95s cubic-bezier(0.16,1,0.3,1) ${p.delay}ms`,
           `background 0.3s ease`,
         ].join(', '),
-        borderRight: i < PILLARS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+        
       }}
     >
       {/* Tilt glare */}
@@ -57,7 +57,7 @@ function PillarCard({ p, i, visible }: { p: typeof PILLARS[0], i: number, visibl
         <span
           className="font-heading font-black block"
           style={{
-            fontSize: 'clamp(2.6rem, 4.5vw, 4.2rem)',
+            fontSize: 'clamp(1.9rem, 4.5vw, 4.2rem)',
             color: isHovered ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.12)',
             letterSpacing: '-0.04em',
             lineHeight: 1,
@@ -69,7 +69,7 @@ function PillarCard({ p, i, visible }: { p: typeof PILLARS[0], i: number, visibl
         <span
           className="font-heading font-black block -mt-1"
           style={{
-            fontSize: 'clamp(2.6rem, 4.5vw, 4.2rem)',
+            fontSize: 'clamp(1.9rem, 4.5vw, 4.2rem)',
             color: p.color,
             letterSpacing: '-0.04em',
             lineHeight: 1,
@@ -211,40 +211,21 @@ export function MissionVision() {
             </span>
           </div>
 
-          {/* Three pillars — mobile swipe / desktop grid */}
-
-          {/* Mobile: horizontal swipe */}
-          <div className="md:hidden -mx-4 px-4 mb-20">
-            <div
-              className="flex gap-3 pb-4"
-              style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {PILLARS.map((p, i) => (
-                <div
-                  key={p.word}
-                  style={{ scrollSnapAlign: 'start', flexShrink: 0, width: 'calc(85vw - 1rem)' }}
-                >
-                  <div
-                    className="rounded-3xl overflow-hidden h-full"
-                    style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}
-                  >
-                    <PillarCard p={p} i={i} visible={pillarsVisible} />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1" style={{ color: 'rgba(255,255,255,0.3)' }}>
-              ← Swipe to explore →
-            </p>
-          </div>
-
-          {/* Desktop: side-by-side */}
+          {/* Three pillars — compact vertical on mobile, side-by-side on desktop */}
           <div
-            className="hidden md:grid md:grid-cols-3 mb-24 md:mb-32 rounded-3xl overflow-hidden"
+            className="grid grid-cols-1 md:grid-cols-3 mb-20 md:mb-24 lg:mb-32 rounded-3xl overflow-hidden"
             style={{ border: '1px solid rgba(255,255,255,0.08)' }}
           >
             {PILLARS.map((p, i) => (
-              <PillarCard key={p.word} p={p} i={i} visible={pillarsVisible} />
+              <div
+                key={p.word}
+                style={{
+                  borderBottom: i < PILLARS.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
+                }}
+                className="md:border-b-0"
+              >
+                <PillarCard p={p} i={i} visible={pillarsVisible} />
+              </div>
             ))}
           </div>
 
