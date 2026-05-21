@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase'
 import { verifyPaystackTransaction } from '@/lib/paystack'
@@ -10,7 +11,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing reference' }, { status: 400 })
     }
 
-    // Verify with Paystack
     const tx = await verifyPaystackTransaction(reference)
 
     if (tx.status !== 'success') {
@@ -19,7 +19,6 @@ export async function POST(req: NextRequest) {
 
     const supabase = createServerClient()
 
-    // Check for duplicate
     const { data: existing } = await supabase
       .from('giving_transactions')
       .select('id')
@@ -33,7 +32,7 @@ export async function POST(req: NextRequest) {
     const { error } = await supabase.from('giving_transactions').insert({
       name: `${tx.customer.first_name} ${tx.customer.last_name}`.trim(),
       email: tx.customer.email,
-      amount: tx.amount / 100, // Paystack returns kobo
+      amount: tx.amount / 100,
       category: (tx.metadata?.category as string) ?? 'offering',
       paystack_reference: reference,
       status: 'success',

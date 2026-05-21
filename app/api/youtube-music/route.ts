@@ -1,7 +1,6 @@
+export const dynamic = 'force-dynamic'
 import { NextResponse } from 'next/server'
 import { fetchMusicVideos } from '@/lib/youtube'
-
-export const revalidate = 21600 // 6 hours
 
 export async function GET() {
   try {

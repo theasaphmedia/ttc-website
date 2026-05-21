@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase'
 import { sendNotificationEmail } from '@/lib/resend'
@@ -35,7 +36,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Failed to save submission' }, { status: 500 })
     }
 
-    // Fire-and-forget notification email
     await sendNotificationEmail(
       `New TTC Form: ${form_type.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())} from ${name}`,
       `
@@ -44,12 +44,6 @@ export async function POST(req: NextRequest) {
           <tr><td style="padding:6px 12px;font-weight:bold">Name</td><td style="padding:6px 12px">${name}</td></tr>
           <tr><td style="padding:6px 12px;font-weight:bold">Email</td><td style="padding:6px 12px">${email}</td></tr>
           ${phone ? `<tr><td style="padding:6px 12px;font-weight:bold">Phone</td><td style="padding:6px 12px">${phone}</td></tr>` : ''}
-          ${Object.entries(rest)
-            .map(
-              ([k, v]) =>
-                `<tr><td style="padding:6px 12px;font-weight:bold">${k}</td><td style="padding:6px 12px">${String(v)}</td></tr>`,
-            )
-            .join('')}
         </table>
       `,
     )
