@@ -70,11 +70,11 @@ export interface YouTubeSermon {
 
 export type SermonCategory =
   | 'All'
-  | 'Purpose & Identity'
-  | 'Devotion & Prayer'
-  | 'The Word'
-  | 'Kingdom Living'
-  | 'Special Messages'
+  | 'Purpose & Calling'
+  | 'Prayer & Worship'
+  | 'Grace & Faith'
+  | 'Life & Relationships'
+  | 'Special Series'
 
 // Ministry Group Types
 

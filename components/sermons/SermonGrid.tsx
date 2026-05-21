@@ -9,21 +9,21 @@ import type { YouTubeSermon, SermonCategory } from '@/types'
 
 const CATEGORIES: SermonCategory[] = [
   'All',
-  'Purpose & Identity',
-  'Devotion & Prayer',
-  'The Word',
-  'Kingdom Living',
-  'Special Messages',
+  'Purpose & Calling',
+  'Prayer & Worship',
+  'Grace & Faith',
+  'Life & Relationships',
+  'Special Series',
 ]
 
 function matchCategory(title: string, cat: SermonCategory): boolean {
   if (cat === 'All') return true
   const t = title.toLowerCase()
-  if (cat === 'Purpose & Identity') return t.includes('purpose') || t.includes('identity') || t.includes('calling') || t.includes('destiny')
-  if (cat === 'Devotion & Prayer') return t.includes('prayer') || t.includes('devotion') || t.includes('worship') || t.includes('fast')
-  if (cat === 'The Word') return t.includes('word') || t.includes('bible') || t.includes('scripture') || t.includes('truth')
-  if (cat === 'Kingdom Living') return t.includes('kingdom') || t.includes('dominion') || t.includes('glory') || t.includes('reign')
-  if (cat === 'Special Messages') return t.includes('special') || t.includes('camp') || t.includes('ingather') || t.includes('quest')
+  if (cat === 'Purpose & Calling')    return t.includes('purpose') || t.includes('calling') || t.includes('marketplace') || t.includes('identity') || t.includes('destiny') || t.includes('search') || t.includes('invitation')
+  if (cat === 'Prayer & Worship')     return t.includes('prayer') || t.includes('worship') || t.includes('praise') || t.includes('devotion') || t.includes('rooted') || t.includes('abba') || t.includes('energeo') || t.includes('intercession')
+  if (cat === 'Grace & Faith')        return t.includes('grace') || t.includes('faith') || t.includes('unbroken') || t.includes('abundant') || t.includes('miracle') || t.includes('possibilities') || t.includes('saving') || t.includes('shades')
+  if (cat === 'Life & Relationships') return t.includes('marriage') || t.includes('dating') || t.includes('relationship') || t.includes('family') || t.includes('love') || t.includes('new age')
+  if (cat === 'Special Series')       return t.includes('quest') || t.includes('lift') || t.includes('conference') || t.includes('ingather') || t.includes('inaugural') || t.includes('highlights') || t.includes('kingdom') || t.includes('anointing') || t.includes('economic')
   return false
 }
 
