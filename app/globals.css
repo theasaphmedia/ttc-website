@@ -284,3 +284,134 @@
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ─── Mobile / Touch Animation Keyframes ────────────────────────────── */
+@keyframes ttc-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes ttc-float-sm {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes ttc-pulse-orange {
+  0%, 100% { box-shadow: 0 4px 20px rgba(247,147,30,0.3); }
+  50%       { box-shadow: 0 4px 40px rgba(247,147,30,0.65), 0 0 0 8px rgba(247,147,30,0.08); }
+}
+@keyframes ttc-pulse-blue {
+  0%, 100% { box-shadow: 0 4px 20px rgba(21,48,147,0.25); }
+  50%       { box-shadow: 0 4px 40px rgba(21,48,147,0.55), 0 0 0 8px rgba(21,48,147,0.08); }
+}
+@keyframes ttc-arrow-bounce {
+  0%, 60%, 100% { transform: translateX(0); }
+  80%           { transform: translateX(6px); }
+}
+@keyframes ttc-icon-pop {
+  0%, 70%, 100% { transform: scale(1) translateY(0); }
+  85%           { transform: scale(1.18) translateY(-5px); }
+  95%           { transform: scale(0.96) translateY(1px); }
+}
+@keyframes ttc-badge-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-6px) rotate(1deg); }
+}
+@keyframes ttc-card-glow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  50%       { box-shadow: 0 8px 36px rgba(21,48,147,0.14); }
+}
+@keyframes ttc-separator-pulse {
+  0%, 100% { width: 2rem; }
+  50%       { width: 4.5rem; }
+}
+@keyframes ttc-orb-drift-a {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(22px, -16px) scale(1.06); }
+  66%  { transform: translate(-14px, 12px) scale(0.97); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes ttc-orb-drift-b {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(-18px, 14px) scale(0.96); }
+  66%  { transform: translate(16px, -10px) scale(1.04); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes ttc-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes ttc-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes ttc-counter-bounce {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+/* ─── Always-on decorative animations (visible on all devices) ──────── */
+.ttc-orb-drift-a { animation: ttc-orb-drift-a 14s ease-in-out infinite; }
+.ttc-orb-drift-b { animation: ttc-orb-drift-b 18s ease-in-out infinite; }
+.ttc-orb-drift-c { animation: ttc-orb-drift-a 22s ease-in-out infinite reverse; }
+.ttc-spin-slow   { animation: ttc-spin-slow 20s linear infinite; }
+
+/* ─── Touch-device only animations ──────────────────────────────────── */
+/* Targets phones/tablets with no pointer hover (touch screens) */
+@media (hover: none) and (pointer: coarse) {
+  /* Icon float — attach class "touch-float" to icon wrappers */
+  .touch-float {
+    animation: ttc-float 3.2s ease-in-out infinite;
+  }
+  .touch-float-sm {
+    animation: ttc-float-sm 2.6s ease-in-out infinite;
+  }
+  /* Icon pop — attach class "touch-icon-pop" */
+  .touch-icon-pop {
+    animation: ttc-icon-pop 4s ease-in-out infinite;
+  }
+  /* Badge float */
+  .touch-badge-float {
+    animation: ttc-badge-float 3.8s ease-in-out infinite;
+  }
+  /* CTA button pulse glow */
+  .touch-pulse-orange {
+    animation: ttc-pulse-orange 2.4s ease-in-out infinite;
+  }
+  .touch-pulse-blue {
+    animation: ttc-pulse-blue 2.6s ease-in-out infinite;
+  }
+  /* Arrow directional bounce */
+  .touch-arrow-bounce {
+    animation: ttc-arrow-bounce 2.2s ease-in-out infinite;
+  }
+  /* Card hover-state replacement */
+  .touch-card-glow {
+    animation: ttc-card-glow 3s ease-in-out infinite;
+  }
+  /* Separator auto-expand */
+  .touch-separator-pulse {
+    animation: ttc-separator-pulse 3s ease-in-out infinite;
+  }
+  /* Shimmer text */
+  .touch-shimmer {
+    background: linear-gradient(90deg, currentColor 25%, rgba(255,255,255,0.7) 50%, currentColor 75%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: ttc-shimmer 3s linear infinite;
+  }
+  /* Active tap feedback for all button types */
+  .btn-primary:active,
+  .btn-orange:active,
+  .btn-outline:active,
+  .btn-outline-white:active,
+  [class*="hero-btn"]:active {
+    transform: scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+  }
+  /* Stagger delays for lists of animated items */
+  .touch-delay-1 { animation-delay: 0.15s; }
+  .touch-delay-2 { animation-delay: 0.3s; }
+  .touch-delay-3 { animation-delay: 0.45s; }
+  .touch-delay-4 { animation-delay: 0.6s; }
+}
