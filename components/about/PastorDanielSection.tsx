@@ -19,9 +19,9 @@ const EVENT_PHOTOS = [
   '/images/events/worship-1.jpg',   '/images/events/worship-2.jpg',
   '/images/events/worship-3.jpg',   '/images/events/service-1.jpg',
   '/images/events/service-2.jpg',   '/images/events/service-3.jpg',
-  '/images/gallery/gallery-5.jpeg', '/images/gallery/gallery-6.jpeg',
-  '/images/gallery/gallery-7.jpeg', '/images/gallery/gallery-8.jpeg',
-  '/images/gallery/gallery-11.jpeg','/images/gallery/gallery-12.jpeg',
+  '/images/gallery/gallery-18.jpg', '/images/gallery/gallery-19.jpg',
+  '/images/gallery/gallery-20.jpg', '/images/gallery/gallery-21.jpg',
+  '/images/gallery/gallery-22.jpg', '/images/gallery/gallery-23.jpg',
 ]
 
 function HighlightCard({ item }: { item: typeof HIGHLIGHTS[0] }) {
@@ -166,7 +166,7 @@ export function PastorDanielSection() {
             <div className="flex gap-3 absolute" style={{ animation: 'galleryScroll 35s linear infinite', width: 'max-content' }}>
               {[...EVENT_PHOTOS, ...EVENT_PHOTOS].map((src, i) => (
                 <div key={i} className="relative rounded-xl overflow-hidden shrink-0 shadow-md group/gal cursor-pointer" style={{ width: '320px', height: '220px' }}>
-                  <Image src={src} alt={`TTC event ${i + 1}`} fill className="object-cover transition-transform duration-700 group-hover/gal:scale-110" sizes="320px" />
+                  <Image src={src} alt={`TTC event ${i + 1}`} fill className="object-cover object-top transition-transform duration-700 group-hover/gal:scale-110" sizes="320px" />
                   <div className="absolute inset-0 opacity-0 group-hover/gal:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, rgba(21,48,147,0.25) 0%, transparent 60%)' }} />
                 </div>
               ))}

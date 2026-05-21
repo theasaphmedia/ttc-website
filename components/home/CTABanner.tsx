@@ -8,12 +8,12 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { useMagnetic } from '@/hooks/useMagnetic'
 
 const MARQUEE_IMAGES = [
+  '/images/events/sog-1.jpg',        '/images/events/sog-2.jpg',
+  '/images/events/sog-3.jpg',        '/images/events/sog-4.jpg',
+  '/images/events/sog-5.jpg',        '/images/events/sog-6.jpg',
   '/images/gallery/gallery-1.jpeg',  '/images/gallery/gallery-2.jpeg',
   '/images/gallery/gallery-3.jpeg',  '/images/gallery/gallery-4.jpeg',
-  '/images/gallery/gallery-5.jpeg',  '/images/gallery/gallery-6.jpeg',
-  '/images/gallery/gallery-7.jpeg',  '/images/gallery/gallery-8.jpeg',
   '/images/gallery/gallery-9.jpeg',  '/images/gallery/gallery-10.jpeg',
-  '/images/gallery/gallery-11.jpeg', '/images/gallery/gallery-12.jpeg',
 ]
 
 function MagneticLink({
@@ -120,7 +120,7 @@ export function CTABanner() {
         <div className="flex gap-2 h-full" style={{ animation: 'marquee 30s linear infinite' }}>
           {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((src, i) => (
             <div key={i} className="relative w-32 h-full shrink-0 rounded overflow-hidden">
-              <Image src={src} alt="" fill className="object-cover" sizes="128px" />
+              <Image src={src} alt="" fill className="object-cover object-top" sizes="128px" />
             </div>
           ))}
         </div>
@@ -130,7 +130,7 @@ export function CTABanner() {
         <div className="flex gap-2 h-full" style={{ animation: 'marquee 22s linear infinite reverse' }}>
           {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((src, i) => (
             <div key={i} className="relative w-32 h-full shrink-0 rounded overflow-hidden">
-              <Image src={src} alt="" fill className="object-cover" sizes="128px" />
+              <Image src={src} alt="" fill className="object-cover object-top" sizes="128px" />
             </div>
           ))}
         </div>

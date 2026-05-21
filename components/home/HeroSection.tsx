@@ -10,7 +10,7 @@ import { TTCLogo } from '@/components/ui/TTCLogo'
 const MOSAIC = [
   { src: '/images/hero/hero-1.jpg',       alt: 'TTC Inaugural Service',  className: 'col-span-2 row-span-2' },
   { src: '/images/hero/hero-worship.jpg', alt: 'TTC Worship team',       className: 'col-span-1 row-span-1' },
-  { src: '/images/gallery/gallery-1.jpeg',alt: 'TTC community',          className: 'col-span-1 row-span-1' },
+  { src: '/images/hero/hero-2.jpg',       alt: 'TTC community',          className: 'col-span-1 row-span-1' },
   { src: '/images/hero/hero-crowd1.jpg',  alt: 'TTC gathering',          className: 'col-span-1 row-span-1' },
   { src: '/images/hero/hero-quest.jpg',   alt: 'The Quest event',        className: 'col-span-1 row-span-1' },
 ]
@@ -289,7 +289,7 @@ export function HeroSection() {
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 1280px) 33vw, 25vw"
                   priority={i === 0}
                 />
@@ -312,7 +312,7 @@ export function HeroSection() {
               src="/images/hero/hero-1.jpg"
               alt="The Transformation Camp"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="100vw"
               priority
             />

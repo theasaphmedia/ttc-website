@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { ChevronRight, Users, Heart, BookOpen, Shield, Zap } from 'lucide-react'
+import { ChevronRight, Users, Heart, BookOpen, Shield, Zap, TrendingUp } from 'lucide-react'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -23,6 +23,62 @@ const BENEFITS = [
   { icon: BookOpen, label: 'Growth',         desc: 'Bible-centred discussions that transform',      color: '#4ea8f9' },
   { icon: Zap,      label: 'Service',        desc: 'Finding your place in the body',               color: '#153093' },
 ]
+
+const HERO_CARDS = [
+  { Icon: Shield,     label: 'Accountability', sub: 'Grow together',            color: '#153093' },
+  { Icon: Heart,      label: 'Prayer',          sub: 'Intercede for each other', color: '#f7931e' },
+  { Icon: TrendingUp, label: 'Growth',          sub: 'Deepen your faith',        color: '#22b573' },
+  { Icon: Users,      label: 'Fellowship',      sub: '5–20 people per group',    color: '#4ea8f9' },
+]
+
+function HeroCard({ Icon, label, sub, color }: typeof HERO_CARDS[0]) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="flex flex-col gap-3 p-5 rounded-2xl cursor-default active:scale-[0.97]"
+      style={{
+        background: hovered ? `${color}30` : `${color}18`,
+        border: `1px solid ${hovered ? color + '70' : color + '30'}`,
+        transform: hovered ? 'translateY(-6px) scale(1.03)' : 'translateY(0) scale(1)',
+        boxShadow: hovered ? `0 14px 36px ${color}35` : 'none',
+        transition: 'all 0.3s cubic-bezier(0.23,1,0.32,1)',
+      }}
+    >
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+        style={{
+          background: hovered ? `${color}40` : `${color}25`,
+          color: hovered ? '#fff' : 'rgba(255,255,255,0.8)',
+          transform: hovered ? 'scale(1.15)' : 'scale(1)',
+          transition: 'all 0.3s cubic-bezier(0.23,1,0.32,1)',
+        }}
+      >
+        <Icon size={18} />
+      </div>
+      <p
+        className="font-heading font-black text-sm"
+        style={{
+          color: hovered ? '#fff' : 'rgba(255,255,255,0.9)',
+          transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        {label}
+      </p>
+      <p
+        className="text-xs font-heading leading-snug"
+        style={{
+          color: hovered ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.5)',
+          transition: 'color 0.3s ease',
+        }}
+      >
+        {sub}
+      </p>
+    </div>
+  )
+}
 
 function StepCard({ item, index }: { item: typeof HOW_IT_WORKS[0]; index: number }) {
   const { ref, cardStyle, glareStyle, isHovered, handlers } = useTilt({ maxTilt: 10, scale: 1.03, speed: 350, glare: true })
@@ -146,18 +202,8 @@ export default function CircleGroupsPage() {
               </a>
             </div>
             <div className="hidden lg:grid grid-cols-2 gap-4">
-              {[
-                { icon: '🤝', label: 'Accountability',  sub: 'Grow together',         color: '#153093' },
-                { icon: '🙏', label: 'Prayer',          sub: 'Intercede for each other', color: '#f7931e' },
-                { icon: '📈', label: 'Growth',          sub: 'Deepen your faith',      color: '#22b573' },
-                { icon: '❤️', label: 'Fellowship',      sub: '5–20 people per group',  color: '#4ea8f9' },
-              ].map((item) => (
-                <div key={item.label} className="p-5 rounded-2xl flex flex-col gap-2 touch-card-glow"
-                  style={{ background: `${item.color}18`, border: `1px solid ${item.color}30` }}>
-                  <span className="text-2xl touch-float-sm">{item.icon}</span>
-                  <p className="font-heading font-black text-white text-sm">{item.label}</p>
-                  <p className="text-xs font-heading" style={{ color: 'rgba(255,255,255,0.55)' }}>{item.sub}</p>
-                </div>
+              {HERO_CARDS.map(card => (
+                <HeroCard key={card.label} {...card} />
               ))}
             </div>
           </div>

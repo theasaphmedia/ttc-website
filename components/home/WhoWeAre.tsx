@@ -15,11 +15,11 @@ const STEPS = [
 ]
 
 const GALLERY = [
-  '/images/gallery/gallery-1.jpeg',
-  '/images/gallery/gallery-2.jpeg',
-  '/images/gallery/gallery-3.jpeg',
-  '/images/gallery/gallery-4.jpeg',
-  '/images/gallery/gallery-5.jpeg',
+  '/images/gallery/gallery-13.jpg',
+  '/images/gallery/gallery-14.jpg',
+  '/images/gallery/gallery-15.jpg',
+  '/images/gallery/gallery-16.jpg',
+  '/images/gallery/gallery-17.jpg',
 ]
 
 // Parallax depths for each photo
@@ -221,7 +221,7 @@ export function WhoWeAre() {
                       src={src}
                       alt={`TTC moment ${i + 1}`}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover/photo:scale-110"
+                      className="object-cover object-top transition-transform duration-700 group-hover/photo:scale-110"
                       sizes="200px"
                     />
                     {/* Tint overlay fades out on hover */}
