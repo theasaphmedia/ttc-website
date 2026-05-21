@@ -1,17 +1,17 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Heart, BookOpen, Building, Star } from 'lucide-react'
+import { HandHeart, Coins, Building2, Sprout } from 'lucide-react'
 import { Field, TextInput } from '../forms/FormField'
 import { useTilt } from '@/hooks/useTilt'
 
 type Category = 'offering' | 'tithe' | 'building' | 'special'
 
 const CATEGORIES: { key: Category; icon: React.ElementType; label: string; desc: string; color: string }[] = [
-  { key: 'offering', icon: Heart,     label: 'Offering', desc: 'Your weekly act of worship',          color: '#f7931e' },
-  { key: 'tithe',    icon: BookOpen,  label: 'Tithe',    desc: 'Returning the first tenth to God',    color: '#153093' },
-  { key: 'building', icon: Building,  label: 'Building', desc: 'Investing in the house of God',       color: '#22b573' },
-  { key: 'special',  icon: Star,      label: 'Special',  desc: 'Seeds sown for specific causes',      color: '#4ea8f9' },
+  { key: 'offering', icon: HandHeart,  label: 'Offering', desc: 'Your weekly act of worship',          color: '#f7931e' },
+  { key: 'tithe',    icon: Coins,      label: 'Tithe',    desc: 'Returning the first tenth to God',    color: '#153093' },
+  { key: 'building', icon: Building2,  label: 'Building', desc: 'Investing in the house of God',       color: '#22b573' },
+  { key: 'special',  icon: Sprout,     label: 'Special',  desc: 'Seeds sown for specific causes',      color: '#4ea8f9' },
 ]
 
 function CategoryCard({

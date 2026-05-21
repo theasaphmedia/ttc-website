@@ -11,12 +11,11 @@ import { useTilt } from '@/hooks/useTilt'
 import { useMagnetic } from '@/hooks/useMagnetic'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
-const CITIES = [
-  { name: 'Lagos',         country: 'Nigeria', code: 'NG', color: '#153093', primary: true },
-  { name: 'Abuja',         country: 'Nigeria', code: 'NG', color: '#153093', primary: false },
-  { name: 'Port Harcourt', country: 'Nigeria', code: 'NG', color: '#153093', primary: false },
-  { name: 'Toronto',       country: 'Canada',  code: 'CA', color: '#22b573', primary: false },
-  { name: 'London',        country: 'UK',      code: 'GB', color: '#f7931e', primary: false },
+const REGIONS = [
+  { name: 'Nigeria',  detail: 'Home base & growing',     code: 'NG', color: '#153093' },
+  { name: 'Canada',   detail: 'In the mandate',          code: 'CA', color: '#22b573' },
+  { name: 'USA',      detail: 'In the mandate',          code: 'US', color: '#f7931e' },
+  { name: 'UK & EU',  detail: 'In the mandate',          code: 'GB', color: '#4ea8f9' },
 ]
 
 const STATS = [
@@ -105,50 +104,43 @@ function StatCard({ s }: { s: typeof STATS[0] }) {
   )
 }
 
-function CityCard({ city }: { city: typeof CITIES[0] }) {
+function RegionCard({ region }: { region: typeof REGIONS[0] }) {
   const { ref, cardStyle, glareStyle, isHovered, handlers } = useTilt({ maxTilt: 8, scale: 1.04, speed: 300, glare: true })
   return (
     <div
       ref={ref}
       {...handlers}
-      className="flex items-center gap-3 px-5 py-3 rounded-full overflow-hidden relative cursor-default"
+      className="flex items-center gap-3 px-5 py-4 rounded-2xl overflow-hidden relative cursor-default"
       style={{
         ...cardStyle,
         background: isHovered ? 'white' : 'var(--off-white)',
-        border: `1px solid ${isHovered ? city.color + '40' : 'var(--gray-200)'}`,
-        boxShadow: isHovered ? `0 8px 28px ${city.color}18` : 'none',
+        border: `1px solid ${isHovered ? region.color + '40' : 'var(--gray-200)'}`,
+        boxShadow: isHovered ? `0 8px 28px ${region.color}18` : 'none',
         transition: [cardStyle.transition, 'background 0.3s ease', 'border-color 0.3s ease', 'box-shadow 0.3s ease'].join(', '),
       }}
     >
       <div style={glareStyle} />
-      {/* Country code badge */}
       <div
-        className="w-9 h-9 rounded-full flex items-center justify-center font-heading font-black text-xs text-white shrink-0 relative z-10"
+        className="w-10 h-10 rounded-full flex items-center justify-center font-heading font-black text-xs text-white shrink-0 relative z-10"
         style={{
-          background: city.color,
+          background: region.color,
           transform: isHovered ? 'scale(1.1)' : 'scale(1)',
           transition: 'transform 0.3s ease',
+          boxShadow: isHovered ? `0 4px 14px ${region.color}40` : 'none',
         }}
       >
-        {city.code}
+        {region.code}
       </div>
       <div className="relative z-10 flex-1">
-        <div className="flex items-center gap-1.5">
-          <p className="font-heading font-bold text-sm" style={{ color: isHovered ? city.color : 'var(--dark)', transition: 'color 0.2s ease' }}>
-            {city.name}
-          </p>
-          {city.primary && (
-            <span className="text-[9px] font-heading font-bold px-1.5 py-0.5 rounded-full" style={{ background: `${city.color}15`, color: city.color }}>
-              HQ
-            </span>
-          )}
-        </div>
-        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{city.country}</p>
+        <p className="font-heading font-bold text-sm" style={{ color: isHovered ? region.color : 'var(--dark)', transition: 'color 0.2s ease' }}>
+          {region.name}
+        </p>
+        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{region.detail}</p>
       </div>
       <MapPin
         size={14}
         style={{
-          color: city.color,
+          color: region.color,
           opacity: isHovered ? 1 : 0.4,
           transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
           transition: 'transform 0.3s ease, opacity 0.3s ease',
@@ -321,19 +313,22 @@ export default function TICPage() {
           {/* Existing cities */}
           <div className="mb-20">
             <AnimatedSection variant="fadeUp" className="text-center mb-10">
-              <span className="section-label">Our Growing Reach</span>
+              <span className="section-label">The Mandate</span>
               <h2 className="section-title">
-                TTC Is Planting In <span className="text-gradient-blue">These Cities</span>
+                Where TTC Is <span className="text-gradient-blue">Called to Go</span>
               </h2>
+              <p className="mt-4 text-base max-w-xl mx-auto" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                Our mandate is clear — 1 million believers across these nations and beyond.
+              </p>
             </AnimatedSection>
             <AnimatedSection variant="fadeUp" delay={100}>
-              <div className="flex flex-wrap justify-center gap-4">
-                {CITIES.map(city => (
-                  <CityCard key={`${city.name}-${city.country}`} city={city} />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                {REGIONS.map(region => (
+                  <RegionCard key={region.name} region={region} />
                 ))}
               </div>
-              <p className="text-center text-sm mt-4" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-                These are the cities where TTC is taking root — yours could be next.
+              <p className="text-center text-sm mt-6" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                The mandate doesn&apos;t stop here — your city could be the next breakthrough.
               </p>
             </AnimatedSection>
           </div>
