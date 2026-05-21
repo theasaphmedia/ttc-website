@@ -12,11 +12,11 @@ import { useMagnetic } from '@/hooks/useMagnetic'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
 const CITIES = [
-  { name: 'Lagos',         country: 'Nigeria', flag: '🇳🇬' },
-  { name: 'Abuja',         country: 'Nigeria', flag: '🇳🇬' },
-  { name: 'Port Harcourt', country: 'Nigeria', flag: '🇳🇬' },
-  { name: 'Toronto',       country: 'Canada',  flag: '🇨🇦' },
-  { name: 'London',        country: 'UK',      flag: '🇬🇧' },
+  { name: 'Lagos',         country: 'Nigeria', code: 'NG', color: '#153093', primary: true },
+  { name: 'Abuja',         country: 'Nigeria', code: 'NG', color: '#153093', primary: false },
+  { name: 'Port Harcourt', country: 'Nigeria', code: 'NG', color: '#153093', primary: false },
+  { name: 'Toronto',       country: 'Canada',  code: 'CA', color: '#22b573', primary: false },
+  { name: 'London',        country: 'UK',      code: 'GB', color: '#f7931e', primary: false },
 ]
 
 const STATS = [
@@ -55,10 +55,10 @@ function HeroStatCard({ s, index, visible }: { s: typeof STATS[0]; index: number
       <p
         className="font-heading font-black text-3xl mb-1 relative z-10"
         style={{
-          color: isHovered ? 'white' : s.color,
+          color: 'white',
           transform: isHovered ? 'translateZ(14px) scale(1.1)' : 'translateZ(0) scale(1)',
-          transition: 'transform 0.35s cubic-bezier(0.23,1,0.32,1), color 0.3s ease',
-          textShadow: isHovered ? `0 0 24px ${s.color}80` : 'none',
+          transition: 'transform 0.35s cubic-bezier(0.23,1,0.32,1)',
+          textShadow: isHovered ? `0 0 28px ${s.color}` : `0 0 12px ${s.color}60`,
         }}
       >
         {s.value}
@@ -115,23 +115,43 @@ function CityCard({ city }: { city: typeof CITIES[0] }) {
       style={{
         ...cardStyle,
         background: isHovered ? 'white' : 'var(--off-white)',
-        border: `1px solid ${isHovered ? 'rgba(21,48,147,0.25)' : 'var(--gray-200)'}`,
-        boxShadow: isHovered ? '0 8px 28px rgba(21,48,147,0.12)' : 'none',
+        border: `1px solid ${isHovered ? city.color + '40' : 'var(--gray-200)'}`,
+        boxShadow: isHovered ? `0 8px 28px ${city.color}18` : 'none',
         transition: [cardStyle.transition, 'background 0.3s ease', 'border-color 0.3s ease', 'box-shadow 0.3s ease'].join(', '),
       }}
     >
       <div style={glareStyle} />
-      <span className="text-2xl relative z-10">{city.flag}</span>
-      <div className="relative z-10">
-        <p className="font-heading font-bold text-sm" style={{ color: 'var(--dark)' }}>{city.name}</p>
+      {/* Country code badge */}
+      <div
+        className="w-9 h-9 rounded-full flex items-center justify-center font-heading font-black text-xs text-white shrink-0 relative z-10"
+        style={{
+          background: city.color,
+          transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+          transition: 'transform 0.3s ease',
+        }}
+      >
+        {city.code}
+      </div>
+      <div className="relative z-10 flex-1">
+        <div className="flex items-center gap-1.5">
+          <p className="font-heading font-bold text-sm" style={{ color: isHovered ? city.color : 'var(--dark)', transition: 'color 0.2s ease' }}>
+            {city.name}
+          </p>
+          {city.primary && (
+            <span className="text-[9px] font-heading font-bold px-1.5 py-0.5 rounded-full" style={{ background: `${city.color}15`, color: city.color }}>
+              HQ
+            </span>
+          )}
+        </div>
         <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{city.country}</p>
       </div>
       <MapPin
         size={14}
         style={{
-          color: '#153093',
+          color: city.color,
+          opacity: isHovered ? 1 : 0.4,
           transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-          transition: 'transform 0.3s ease',
+          transition: 'transform 0.3s ease, opacity 0.3s ease',
         }}
       />
     </div>
@@ -301,9 +321,9 @@ export default function TICPage() {
           {/* Existing cities */}
           <div className="mb-20">
             <AnimatedSection variant="fadeUp" className="text-center mb-10">
-              <span className="section-label">Already Active</span>
+              <span className="section-label">Our Growing Reach</span>
               <h2 className="section-title">
-                TTC Is In <span className="text-gradient-blue">These Cities</span>
+                TTC Is Planting In <span className="text-gradient-blue">These Cities</span>
               </h2>
             </AnimatedSection>
             <AnimatedSection variant="fadeUp" delay={100}>
@@ -313,7 +333,7 @@ export default function TICPage() {
                 ))}
               </div>
               <p className="text-center text-sm mt-4" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-                More cities coming — yours could be next.
+                These are the cities where TTC is taking root — yours could be next.
               </p>
             </AnimatedSection>
           </div>
