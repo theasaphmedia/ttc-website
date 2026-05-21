@@ -1,0 +1,94 @@
+import type { Metadata, Viewport } from 'next'
+import { Montserrat, Open_Sans } from 'next/font/google'
+import './globals.css'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
+import { CursorGlow } from '@/components/ui/CursorGlow'
+
+/* ─── Google Fonts ────────────────────────────────────────────────── */
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+// Mr Dafoe is loaded via a <style> tag below because next/font doesn't support it
+// in all Next.js versions; alternatively add a <link> in the head.
+
+/* ─── Metadata ────────────────────────────────────────────────────── */
+export const metadata: Metadata = {
+  title: {
+    template: '%s | The Transformation Camp',
+    default: 'The Transformation Camp — The Place of Your Making',
+  },
+  description:
+    'The Transformation Camp (TTC) is a love-centred, Word-compliant, Spirit-empowered ministry dedicated to raising purpose-driven believers. Join us every 1st and 3rd Friday.',
+  keywords: [
+    'The Transformation Camp',
+    'TTC',
+    'Binah Church International',
+    'Pastor Daniel Odinaka',
+    'PDee',
+    'Lagos ministry',
+    'Christian church Lagos',
+    'transformation',
+  ],
+  authors: [{ name: 'TAI Digital', url: 'https://theasaphmedia.com' }],
+  creator: 'TAI Digital',
+  openGraph: {
+    type: 'website',
+    siteName: 'The Transformation Camp',
+    title: 'The Transformation Camp — The Place of Your Making',
+    description:
+      'Join The Transformation Camp — a ministry transforming lives through purpose, devotion, and kingdom principles.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Transformation Camp',
+    description: 'The Place of Your Making',
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#153093',
+}
+
+/* ─── Root Layout ─────────────────────────────────────────────────── */
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${montserrat.variable} ${openSans.variable}`}>
+      <head>
+        {/* Mr Dafoe — decorative accent font */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`
+          :root { --font-mr-dafoe: 'Mr Dafoe'; }
+        `}</style>
+      </head>
+      <body className="antialiased">
+        <CursorGlow />
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
