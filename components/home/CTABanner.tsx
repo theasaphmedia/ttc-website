@@ -141,7 +141,7 @@ export function CTABanner() {
 
           <AnimatedSection variant="scaleUp">
             <div
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-8 mx-auto transition-all duration-300 hover:scale-110 hover:rotate-12"
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-8 mx-auto transition-all duration-300 hover:scale-110 hover:rotate-12 touch-float"
               style={{ background: 'rgba(247,147,30,0.2)', border: '1px solid rgba(247,147,30,0.3)' }}
             >
               <Sparkles size={28} style={{ color: '#f7931e' }} />
@@ -170,7 +170,7 @@ export function CTABanner() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <MagneticLink
                 href="/quick-links"
-                className="inline-flex items-center gap-3 px-9 py-4 rounded-full font-heading font-bold text-white text-base tracking-wide transition-all duration-300 hover:shadow-2xl group"
+                className="inline-flex items-center gap-3 px-9 py-4 rounded-full font-heading font-bold text-white text-base tracking-wide transition-all duration-300 hover:shadow-2xl group touch-pulse-orange"
                 style={{ background: '#f7931e', boxShadow: '0 6px 30px rgba(247,147,30,0.4)' }}
               >
                 Get Connected

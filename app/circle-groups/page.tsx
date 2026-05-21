@@ -125,19 +125,42 @@ export default function CircleGroupsPage() {
         <BrandCurves color="#f7931e" opacity={0.06} position="bottom-left" animated />
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
         <div className="container-ttc relative z-10">
-          <div className="flex items-center gap-2 mb-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 mb-8 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Link href="/" className="hover:text-white transition-colors font-heading font-medium">Home</Link>
             <ChevronRight size={14} />
             <span className="text-white font-heading font-medium">Circle Groups</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
-            <Users size={12} /> Community
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
+                <Users size={12} /> Community
+              </div>
+              <h1 className="font-heading font-black text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>Circle Groups</h1>
+              <p className="font-accent mb-6" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', color: '#f7931e' }}>Small circles. Big transformation.</p>
+              <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
+                An initiative to foster fellowship amongst small groups of 5–20 people. Intimate. Intentional. Community-driven.
+              </p>
+              <a href="#join-form" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-heading font-bold text-white text-sm touch-pulse-orange"
+                style={{ background: '#f7931e', boxShadow: '0 4px 20px rgba(247,147,30,0.35)' }}>
+                Join a Circle Group →
+              </a>
+            </div>
+            <div className="hidden lg:grid grid-cols-2 gap-4">
+              {[
+                { icon: '🤝', label: 'Accountability',  sub: 'Grow together',         color: '#153093' },
+                { icon: '🙏', label: 'Prayer',          sub: 'Intercede for each other', color: '#f7931e' },
+                { icon: '📈', label: 'Growth',          sub: 'Deepen your faith',      color: '#22b573' },
+                { icon: '❤️', label: 'Fellowship',      sub: '5–20 people per group',  color: '#4ea8f9' },
+              ].map((item) => (
+                <div key={item.label} className="p-5 rounded-2xl flex flex-col gap-2 touch-card-glow"
+                  style={{ background: `${item.color}18`, border: `1px solid ${item.color}30` }}>
+                  <span className="text-2xl touch-float-sm">{item.icon}</span>
+                  <p className="font-heading font-black text-white text-sm">{item.label}</p>
+                  <p className="text-xs font-heading" style={{ color: 'rgba(255,255,255,0.55)' }}>{item.sub}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="font-heading font-black text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>Circle Groups</h1>
-          <p className="font-accent mb-6" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.5rem)', color: '#f7931e' }}>Small circles. Big transformation.</p>
-          <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
-            An initiative to foster fellowship amongst small groups of 5–20 people. Intimate. Intentional. Community-driven.
-          </p>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />
       </section>

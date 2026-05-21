@@ -140,20 +140,41 @@ export default function ProgramsPage() {
         <BrandCurves color="#f7931e" opacity={0.06} position="bottom-left" animated />
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
         <div className="container-ttc relative z-10">
-          <div className="flex items-center gap-2 mb-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 mb-8 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Link href="/" className="hover:text-white transition-colors font-heading font-medium">Home</Link>
             <ChevronRight size={14} />
             <span className="text-white font-heading font-medium">Programs</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-            Schedule
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* LEFT — headline */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                Schedule
+              </div>
+              <h1 className="font-heading font-black text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>Come as You Are.</h1>
+              <p className="font-accent mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#f7931e' }}>Leave Transformed.</p>
+              <p className="text-base md:text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
+                TTC gathers every 1st and 3rd Friday of the month for Spirit-empowered, Word-based teaching. Online and in-person.
+              </p>
+            </div>
+            {/* RIGHT — schedule preview */}
+            <div className="hidden lg:flex flex-col gap-4">
+              {[
+                { label: '1st Friday', detail: 'Every Month — 12:00 PM', color: '#4ea8f9' },
+                { label: '3rd Friday', detail: 'Every Month — 12:00 PM', color: '#f7931e' },
+                { label: 'Quarterly Ingathering', detail: 'All Ministry Groups Assemble', color: '#22b573' },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-4 p-5 rounded-2xl touch-card-glow" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                  <div className="w-2 h-10 rounded-full shrink-0" style={{ background: item.color }} />
+                  <div>
+                    <p className="font-heading font-black text-white text-base leading-none mb-1">{item.label}</p>
+                    <p className="text-sm font-heading" style={{ color: item.color }}>{item.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="font-heading font-black text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>Come as You Are.</h1>
-          <p className="font-accent mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#f7931e' }}>Leave Transformed.</p>
-          <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
-            TTC gathers every 1st and 3rd Friday of the month for Spirit-empowered, Word-based teaching. Online and in-person.
-          </p>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />
       </section>
@@ -172,8 +193,8 @@ export default function ProgramsPage() {
           {/* Location strips */}
           <div className="grid sm:grid-cols-2 gap-4 mb-20">
             {[
-              { icon: MapPin,  label: 'In-Person',   text: 'Location details coming soon — contact us for directions', color: '#153093', bg: 'rgba(21,48,147,0.04)', border: 'rgba(21,48,147,0.12)' },
-              { icon: Wifi,    label: 'Live Online',  text: 'Stream link shared before each service — subscribe on YouTube @jointtc', color: '#22b573', bg: 'rgba(34,181,115,0.05)', border: 'rgba(34,181,115,0.18)' },
+              { icon: MapPin,  label: 'In-Person',  text: 'Location details coming soon — contact us for directions', color: '#153093', bg: 'rgba(21,48,147,0.04)', border: 'rgba(21,48,147,0.12)' },
+              { icon: Wifi,    label: 'Live Online', text: 'Stream link shared before each service — subscribe on YouTube @jointtc', color: '#22b573', bg: 'rgba(34,181,115,0.05)', border: 'rgba(34,181,115,0.18)' },
             ].map(({ icon: Icon, label, text, color, bg, border }) => (
               <div
                 key={label}
@@ -222,7 +243,7 @@ export default function ProgramsPage() {
             <MagneticCTA
               href="https://www.youtube.com/@jointtc"
               external
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-heading font-bold text-white text-sm transition-all duration-300 hover:shadow-xl hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-heading font-bold text-white text-sm transition-all duration-300 hover:shadow-xl hover:scale-105 touch-pulse-orange"
               style={{ background: '#f7931e', boxShadow: '0 4px 24px rgba(247,147,30,0.4)' }}
             >
               Subscribe on YouTube <ArrowRight size={16} />

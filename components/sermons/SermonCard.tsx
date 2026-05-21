@@ -59,7 +59,7 @@ export function SermonCard({ sermon, onPlay, featured = false }: SermonCardProps
             {sermon.viewCount && <span className="flex items-center gap-1"><Eye size={13} />{formatViews(sermon.viewCount)}</span>}
           </div>
           <button
-            className="mt-6 self-start flex items-center gap-3 px-6 py-3 rounded-full font-heading font-bold text-white text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl group/btn"
+            className="mt-6 self-start flex items-center gap-3 px-6 py-3 rounded-full font-heading font-bold text-white text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl group/btn touch-pulse-orange"
             style={{ background: '#f7931e', boxShadow: '0 4px 20px rgba(247,147,30,0.4)' }}
           >
             <Play size={16} fill="white" className="transition-transform duration-200 group-hover/btn:scale-110" />

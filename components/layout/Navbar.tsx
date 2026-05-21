@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { TTCLogo } from '@/components/ui/TTCLogo'
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -69,33 +70,12 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo */}
-            <Link href="/" className="relative flex items-center gap-3 shrink-0">
-              <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-xl overflow-hidden shadow-sm">
-                <Image
-                  src="/images/logo/ttc-logo.jpeg"
-                  alt="The Transformation Camp"
-                  fill
-                  className="object-cover"
-                  sizes="48px"
-                  priority
-                />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span
-                  className={cn(
-                    'font-heading font-extrabold text-sm tracking-tight leading-none transition-colors duration-300',
-                    solidBg ? 'text-gray-900' : 'text-white'
-                  )}
-                >
-                  The Transformation
-                </span>
-                <span
-                  className="font-accent text-lg leading-tight"
-                  style={{ color: '#f7931e' }}
-                >
-                  Camp
-                </span>
-              </div>
+            <Link href="/" className="relative flex items-center shrink-0">
+              <TTCLogo
+                variant={solidBg ? 'dark' : 'white'}
+                size={40}
+                className="transition-opacity duration-300"
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -195,20 +175,8 @@ export function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-[60] flex flex-col" style={{ background: '#0d1117' }}>
           <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/10">
-            <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/logo/ttc-logo.jpeg"
-                  alt="TTC"
-                  fill
-                  className="object-cover"
-                  sizes="40px"
-                />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-heading font-extrabold text-sm text-white">The Transformation</span>
-                <span className="font-accent text-lg" style={{ color: '#f7931e' }}>Camp</span>
-              </div>
+            <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+              <TTCLogo variant="white" size={36} />
             </Link>
             <button
               className="p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors"

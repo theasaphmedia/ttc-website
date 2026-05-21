@@ -35,34 +35,57 @@ export default function GivingPage() {
             <ChevronRight size={14} />
             <span className="text-white font-heading font-medium">Give</span>
           </div>
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase"
-            style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-            Giving
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* LEFT */}
+            <div>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase"
+                style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                Giving
+              </div>
+              <h1
+                className="font-heading font-black text-white mb-4"
+                style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
+              >
+                Honor God<br />
+                <span style={{ color: '#f7931e' }}>With Your Substance</span>
+              </h1>
+              <p
+                className="font-heading font-medium text-base md:text-lg mb-2"
+                style={{ color: 'rgba(255,255,255,0.7)', fontStyle: 'italic', fontFamily: 'var(--font-open-sans)' }}
+              >
+                &ldquo;Honour the Lord with your wealth, with the firstfruits of all your crops.&rdquo;
+              </p>
+              <p className="text-sm mb-8" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-open-sans)' }}>
+                — Proverbs 3:9
+              </p>
+            </div>
+            {/* RIGHT — giving categories */}
+            <div className="hidden lg:flex flex-col gap-5 justify-center">
+              {[
+                { icon: '🙌', label: 'Offering',  sub: 'Your weekly act of worship',      color: '#f7931e' },
+                { icon: '💰', label: 'Tithe',     sub: 'Return the first tenth to God',   color: '#153093' },
+                { icon: '🏛️', label: 'Building',  sub: 'Invest in the house of God',      color: '#22b573' },
+                { icon: '🌱', label: 'Special',   sub: 'Seeds sown for specific causes',  color: '#4ea8f9' },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-4 p-4 rounded-2xl touch-card-glow"
+                  style={{ background: `${item.color}18`, border: `1px solid ${item.color}30` }}>
+                  <span className="text-2xl touch-float-sm shrink-0">{item.icon}</span>
+                  <div>
+                    <p className="font-heading font-black text-white text-sm">{item.label}</p>
+                    <p className="text-xs font-heading" style={{ color: 'rgba(255,255,255,0.55)' }}>{item.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1
-            className="font-heading font-black text-white mb-4"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
-          >
-            Honor God
-            <br />
-            <span style={{ color: '#f7931e' }}>With Your Substance</span>
-          </h1>
-          <p
-            className="font-heading font-medium text-base md:text-lg mb-4"
-            style={{ color: 'rgba(255,255,255,0.7)', fontStyle: 'italic', fontFamily: 'var(--font-open-sans)' }}
-          >
-            &ldquo;Honour the Lord with your wealth, with the firstfruits of all your crops.&rdquo;
-          </p>
-          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)', fontFamily: 'var(--font-open-sans)' }}>
-            — Proverbs 3:9
-          </p>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />
       </section>
 
+      {/* Giving form */}
       <section className="section-pad bg-white">
         <div className="container-ttc max-w-2xl mx-auto">
           <div className="text-center mb-10">

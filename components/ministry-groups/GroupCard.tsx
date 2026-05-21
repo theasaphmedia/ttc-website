@@ -64,7 +64,7 @@ export function GroupCard({ group, index }: GroupCardProps) {
 
       {/* Icon — bounces on hover */}
       <div
-        className="relative z-10 text-4xl mb-5 w-14 h-14 rounded-2xl flex items-center justify-center"
+        className="relative z-10 text-4xl mb-5 w-14 h-14 rounded-2xl flex items-center justify-center touch-icon-pop"
         style={{
           background: `${group.color}15`,
           transform: isHovered ? 'translateZ(20px) scale(1.1)' : 'translateZ(0) scale(1)',
@@ -98,7 +98,7 @@ export function GroupCard({ group, index }: GroupCardProps) {
 
       {/* Separator — expands on hover */}
       <div
-        className="relative z-10 h-0.5 mb-4"
+        className="relative z-10 h-0.5 mb-4 touch-separator-pulse"
         style={{
           background: group.color,
           width: isHovered ? '4rem' : '2rem',
@@ -129,7 +129,7 @@ export function GroupCard({ group, index }: GroupCardProps) {
         {group.intent === 'learn' ? 'Enroll to Learn' : 'Join This Group'}
         <ArrowRight
           size={14}
-          className="transition-transform duration-200 group-hover/btn:translate-x-1"
+          className="transition-transform duration-200 group-hover/btn:translate-x-1 touch-arrow-bounce"
         />
       </Link>
     </div>

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ChevronRight, MapPin, Globe, Users, ArrowRight } from 'lucide-react'
+import { ChevronRight, MapPin, Globe, ArrowRight } from 'lucide-react'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -101,32 +101,42 @@ export default function TICPage() {
         <BrandCurves color="#f7931e" opacity={0.06} position="bottom-left" animated />
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{ backgroundImage: `linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
         <div className="container-ttc relative z-10">
-          <div className="flex items-center gap-2 mb-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 mb-8 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Link href="/" className="hover:text-white transition-colors font-heading font-medium">Home</Link>
             <ChevronRight size={14} />
             <span className="text-white font-heading font-medium">TIC</span>
           </div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
-            <Globe size={12} /> Transformation In Your City
-          </div>
-          <h1 className="font-heading font-black text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
-            Transformation <span style={{ color: '#4ea8f9' }}>In Your City</span>
-          </h1>
-          <p className="font-accent mb-6" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: '#f7931e' }}>The mandate is clear.</p>
-          <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
-            1 million believers in 3 years. It starts in your city. Are you ready to be the catalyst for transformation where you are?
-          </p>
-          <div className="mt-8">
-            <span style={magStyle} {...magHandlers}>
-              <a
-                ref={btnRef as React.Ref<HTMLAnchorElement>}
-                href="#tic-form"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-heading font-bold text-white text-sm transition-all duration-300 hover:shadow-2xl hover:scale-105"
-                style={{ background: '#f7931e', boxShadow: '0 4px 28px rgba(247,147,30,0.45)' }}
-              >
-                Apply Now <ArrowRight size={16} />
-              </a>
-            </span>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* LEFT */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
+                <Globe size={12} /> Transformation In Your City
+              </div>
+              <h1 className="font-heading font-black text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                Transformation <span style={{ color: '#4ea8f9' }}>In Your City</span>
+              </h1>
+              <p className="font-accent mb-6" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: '#f7931e' }}>The mandate is clear.</p>
+              <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
+                1 million believers in 3 years. It starts in your city. Are you ready to be the catalyst for transformation where you are?
+              </p>
+              <span style={magStyle} {...magHandlers}>
+                <a ref={btnRef as React.Ref<HTMLAnchorElement>} href="#tic-form"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-heading font-bold text-white text-sm touch-pulse-orange"
+                  style={{ background: '#f7931e', boxShadow: '0 4px 28px rgba(247,147,30,0.45)' }}>
+                  Apply Now <ArrowRight size={16} />
+                </a>
+              </span>
+            </div>
+            {/* RIGHT — mandate stats */}
+            <div className="hidden lg:grid grid-cols-2 gap-4">
+              {STATS.map((s) => (
+                <div key={s.label} className="p-6 rounded-2xl text-center touch-card-glow"
+                  style={{ background: `${s.color}18`, border: `1px solid ${s.color}30` }}>
+                  <p className="font-heading font-black text-3xl mb-1" style={{ color: s.color }}>{s.value}</p>
+                  <p className="text-xs font-heading font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="wave" height={80} />
@@ -140,7 +150,7 @@ export default function TICPage() {
               <span className="section-label">The Vision</span>
               <h2 className="section-title">TTC Is Not a <span className="text-gradient-blue">Building</span></h2>
               <div className="mt-6 space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-                <p>The Transformation Camp is any comfortable space where God's children gather to be transformed by His Word. We are taking this mandate to every city, every nation.</p>
+                <p>The Transformation Camp is any comfortable space where God&apos;s children gather to be transformed by His Word. We are taking this mandate to every city, every nation.</p>
                 <p>Whether it is a living room, a university campus, a community centre, or a rented hall — TTC can happen anywhere people are hungry for transformation.</p>
                 <p><strong style={{ color: 'var(--dark)' }}>You can be the one who starts it in your city.</strong></p>
               </div>

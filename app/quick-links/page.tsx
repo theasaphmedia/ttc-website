@@ -29,30 +29,40 @@ export default function QuickLinksPage() {
           }}
         />
         <div className="container-ttc relative z-10">
-          <div className="flex items-center gap-2 mb-6 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          <div className="flex items-center gap-2 mb-8 text-sm" style={{ color: 'rgba(255,255,255,0.5)' }}>
             <Link href="/" className="hover:text-white transition-colors font-heading font-medium">Home</Link>
             <ChevronRight size={14} />
             <span className="text-white font-heading font-medium">Quick Links</span>
           </div>
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase"
-            style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-            Get Connected
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-heading font-bold tracking-widest uppercase"
+                style={{ background: 'rgba(247,147,30,0.2)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+                Get Connected
+              </div>
+              <h1 className="font-heading font-black text-white mb-4"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                Your Connection to <span style={{ color: '#4ea8f9' }}>TTC</span>
+              </h1>
+              <p className="text-base md:text-lg leading-relaxed mb-8"
+                style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
+                Membership, prayer requests, testimonies, counseling, welfare, volunteering — everything you need is right here.
+              </p>
+              <a href="#links" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-heading font-bold text-white text-sm touch-pulse-orange"
+                style={{ background: '#f7931e', boxShadow: '0 4px 20px rgba(247,147,30,0.35)' }}>
+                Browse All Forms →
+              </a>
+            </div>
+            <div className="hidden lg:grid grid-cols-3 gap-3">
+              {['🙋','📿','🤲','🎤','🏥','🧑‍🤝‍🧑','🙌','📖','🌍','🎉','👴','🔗'].map((icon, i) => (
+                <div key={i} className="flex items-center justify-center h-16 rounded-xl touch-float"
+                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', fontSize: '1.6rem', animationDelay: `${i * 0.1}s` }}>
+                  {icon}
+                </div>
+              ))}
+            </div>
           </div>
-          <h1
-            className="font-heading font-black text-white mb-4"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}
-          >
-            Your Connection to <span style={{ color: '#4ea8f9' }}>TTC</span>
-          </h1>
-          <p
-            className="text-base md:text-lg leading-relaxed max-w-xl"
-            style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}
-          >
-            Membership, prayer requests, testimonies, counseling, welfare, volunteering — everything you need is right here.
-          </p>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />
       </section>
