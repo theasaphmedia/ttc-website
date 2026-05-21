@@ -11,12 +11,7 @@ import { useTilt } from '@/hooks/useTilt'
 import { useMagnetic } from '@/hooks/useMagnetic'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
-const REGIONS = [
-  { name: 'Nigeria',  detail: 'Home base & growing',     code: 'NG', color: '#153093' },
-  { name: 'Canada',   detail: 'In the mandate',          code: 'CA', color: '#22b573' },
-  { name: 'USA',      detail: 'In the mandate',          code: 'US', color: '#f7931e' },
-  { name: 'UK & EU',  detail: 'In the mandate',          code: 'GB', color: '#4ea8f9' },
-]
+
 
 const STATS = [
   { value: '1M+',    label: 'Believers to Transform', color: '#153093' },
@@ -104,51 +99,7 @@ function StatCard({ s }: { s: typeof STATS[0] }) {
   )
 }
 
-function RegionCard({ region }: { region: typeof REGIONS[0] }) {
-  const { ref, cardStyle, glareStyle, isHovered, handlers } = useTilt({ maxTilt: 8, scale: 1.04, speed: 300, glare: true })
-  return (
-    <div
-      ref={ref}
-      {...handlers}
-      className="flex items-center gap-3 px-5 py-4 rounded-2xl overflow-hidden relative cursor-default"
-      style={{
-        ...cardStyle,
-        background: isHovered ? 'white' : 'var(--off-white)',
-        border: `1px solid ${isHovered ? region.color + '40' : 'var(--gray-200)'}`,
-        boxShadow: isHovered ? `0 8px 28px ${region.color}18` : 'none',
-        transition: [cardStyle.transition, 'background 0.3s ease', 'border-color 0.3s ease', 'box-shadow 0.3s ease'].join(', '),
-      }}
-    >
-      <div style={glareStyle} />
-      <div
-        className="w-10 h-10 rounded-full flex items-center justify-center font-heading font-black text-xs text-white shrink-0 relative z-10"
-        style={{
-          background: region.color,
-          transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-          transition: 'transform 0.3s ease',
-          boxShadow: isHovered ? `0 4px 14px ${region.color}40` : 'none',
-        }}
-      >
-        {region.code}
-      </div>
-      <div className="relative z-10 flex-1">
-        <p className="font-heading font-bold text-sm" style={{ color: isHovered ? region.color : 'var(--dark)', transition: 'color 0.2s ease' }}>
-          {region.name}
-        </p>
-        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{region.detail}</p>
-      </div>
-      <MapPin
-        size={14}
-        style={{
-          color: region.color,
-          opacity: isHovered ? 1 : 0.4,
-          transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-          transition: 'transform 0.3s ease, opacity 0.3s ease',
-        }}
-      />
-    </div>
-  )
-}
+
 
 export default function TICPage() {
   const { ref: btnRef, style: magStyle, handlers: magHandlers } = useMagnetic({ strength: 0.4 })
@@ -310,26 +261,33 @@ export default function TICPage() {
             </AnimatedSection>
           </div>
 
-          {/* Existing cities */}
+          {/* Global mandate strip */}
           <div className="mb-20">
-            <AnimatedSection variant="fadeUp" className="text-center mb-10">
-              <span className="section-label">The Mandate</span>
-              <h2 className="section-title">
-                Where TTC Is <span className="text-gradient-blue">Called to Go</span>
-              </h2>
-              <p className="mt-4 text-base max-w-xl mx-auto" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-                Our mandate is clear — 1 million believers across these nations and beyond.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection variant="fadeUp" delay={100}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                {REGIONS.map(region => (
-                  <RegionCard key={region.name} region={region} />
-                ))}
+            <AnimatedSection variant="fadeUp">
+              <div
+                className="rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, #eef2ff 0%, #f0fdf4 100%)', border: '1px solid rgba(21,48,147,0.08)' }}
+              >
+                {/* Decorative orbs */}
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-20 -translate-y-1/3 translate-x-1/3" style={{ background: '#4ea8f9', filter: 'blur(60px)' }} />
+                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none opacity-20 translate-y-1/3 -translate-x-1/3" style={{ background: '#f7931e', filter: 'blur(50px)' }} />
+
+                <Globe size={40} strokeWidth={1.4} className="mx-auto mb-5 relative z-10" style={{ color: '#153093' }} />
+                <h3 className="font-heading font-black text-2xl md:text-3xl mb-3 relative z-10" style={{ color: 'var(--dark)', letterSpacing: '-0.02em' }}>
+                  Every City. Every Nation.
+                </h3>
+                <p className="text-base leading-relaxed max-w-lg mx-auto mb-6 relative z-10" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                  TTC is not limited by geography. The mandate is wherever there are people hungry for transformation. If you feel the call — your city is already on the list.
+                </p>
+                <a
+                  href="#tic-form"
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-heading font-bold text-sm text-white transition-all duration-300 hover:scale-105 hover:shadow-lg relative z-10"
+                  style={{ background: '#153093', boxShadow: '0 4px 20px rgba(21,48,147,0.3)' }}
+                >
+                  Apply for Your City
+                  <ArrowRight size={15} />
+                </a>
               </div>
-              <p className="text-center text-sm mt-6" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-                The mandate doesn&apos;t stop here — your city could be the next breakthrough.
-              </p>
             </AnimatedSection>
           </div>
         </div>
