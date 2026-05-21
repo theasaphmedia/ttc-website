@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Calendar, Clock, MapPin, Wifi, ChevronRight } from 'lucide-react'
 import { getNextServiceDates, formatServiceDate, getCountdown } from '@/lib/schedule'
@@ -9,6 +9,42 @@ import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
 import { useTilt } from '@/hooks/useTilt'
 import { useMagnetic } from '@/hooks/useMagnetic'
+
+function SchedulePreviewCard({ item }: { item: { label: string; detail: string; color: string } }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="flex items-center gap-4 p-5 rounded-2xl cursor-default active:scale-[0.97]"
+      style={{
+        background: hovered ? `${item.color}22` : 'rgba(255,255,255,0.07)',
+        border: `1px solid ${hovered ? item.color + '70' : 'rgba(255,255,255,0.12)'}`,
+        transform: hovered ? 'translateX(8px)' : 'translateX(0)',
+        boxShadow: hovered ? `0 8px 28px ${item.color}30` : 'none',
+        transition: 'all 0.3s cubic-bezier(0.23,1,0.32,1)',
+      }}
+    >
+      <div
+        className="w-2 rounded-full shrink-0"
+        style={{
+          background: item.color,
+          height: hovered ? '48px' : '40px',
+          transition: 'height 0.3s ease',
+        }}
+      />
+      <div>
+        <p
+          className="font-heading font-black text-white text-base leading-none mb-1"
+          style={{ transform: hovered ? 'translateX(4px)' : 'translateX(0)', transition: 'transform 0.3s ease' }}
+        >
+          {item.label}
+        </p>
+        <p className="text-sm font-heading" style={{ color: item.color }}>{item.detail}</p>
+      </div>
+    </div>
+  )
+}
 
 const PROGRAM_NOTES = [
   { icon: Calendar, title: '1st Friday of Every Month', detail: '12:00 PM (Noon)', sub: 'Monthly Transformation Service',  color: '#153093' },
@@ -165,13 +201,7 @@ export default function ProgramsPage() {
                 { label: '3rd Friday', detail: 'Every Month — 12:00 PM', color: '#f7931e' },
                 { label: 'Quarterly Ingathering', detail: 'All Ministry Groups Assemble', color: '#22b573' },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-4 p-5 rounded-2xl touch-card-glow" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  <div className="w-2 h-10 rounded-full shrink-0" style={{ background: item.color }} />
-                  <div>
-                    <p className="font-heading font-black text-white text-base leading-none mb-1">{item.label}</p>
-                    <p className="text-sm font-heading" style={{ color: item.color }}>{item.detail}</p>
-                  </div>
-                </div>
+                <SchedulePreviewCard key={item.label} item={item} />
               ))}
             </div>
           </div>

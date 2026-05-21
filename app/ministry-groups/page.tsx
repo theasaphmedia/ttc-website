@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { MINISTRY_GROUPS } from '@/lib/ministry-groups-data'
 import { GroupCard } from '@/components/ministry-groups/GroupCard'
+import { MinistryGroupsHeroGrid } from '@/components/ministry-groups/MinistryGroupsHeroGrid'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -56,25 +57,7 @@ export default function MinistryGroupsPage() {
               </Link>
             </div>
             {/* RIGHT — 7 group icons cluster */}
-            <div className="hidden lg:grid grid-cols-4 gap-3">
-              {[
-                { icon: '🎵', name: 'Music',       color: '#f7931e' },
-                { icon: '🚂', name: 'Locomotive',  color: '#153093' },
-                { icon: '📖', name: 'Word (TWG)',  color: '#4ea8f9' },
-                { icon: '⚡', name: 'Power (TPG)', color: '#f7931e' },
-                { icon: '🌍', name: 'Community',   color: '#22b573' },
-                { icon: '🎬', name: 'Media',       color: '#153093' },
-                { icon: '📋', name: 'Admin',       color: '#4ea8f9' },
-                { icon: '✝️', name: '7 Groups',    color: '#f7931e' },
-              ].map((g, i) => (
-                <div key={g.name}
-                  className={`flex flex-col items-center justify-center gap-2 rounded-2xl p-4 touch-float touch-delay-${(i % 4) + 1}`}
-                  style={{ background: `${g.color}18`, border: `1px solid ${g.color}30`, animationDelay: `${i * 0.12}s` }}>
-                  <span className="text-2xl">{g.icon}</span>
-                  <span className="text-[10px] font-heading font-bold text-center leading-tight" style={{ color: 'rgba(255,255,255,0.7)' }}>{g.name}</span>
-                </div>
-              ))}
-            </div>
+            <MinistryGroupsHeroGrid />
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />

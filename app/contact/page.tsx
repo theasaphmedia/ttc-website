@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ContactSection } from '@/components/contact/ContactSection'
+import { ContactHeroCards } from '@/components/contact/ContactHeroCards'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -56,23 +57,7 @@ export default function ContactPage() {
                 Send a Message →
               </a>
             </div>
-            <div className="hidden lg:flex flex-col gap-4">
-              {[
-                { icon: '📍', label: '38A Ikota Villa', sub: 'Ikota, Lagos, Nigeria',       color: '#4ea8f9' },
-                { icon: '📧', label: 'Email Us',        sub: 'Contact info coming soon',    color: '#f7931e' },
-                { icon: '📱', label: 'Phone',           sub: 'Details coming soon',         color: '#22b573' },
-                { icon: '🌐', label: 'Social Media',    sub: 'Follow @jointtc on YouTube',  color: '#153093' },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-4 p-4 rounded-2xl"
-                  style={{ background: `${item.color}18`, border: `1px solid ${item.color}30` }}>
-                  <span className="text-2xl shrink-0 touch-float-sm">{item.icon}</span>
-                  <div>
-                    <p className="font-heading font-black text-white text-sm">{item.label}</p>
-                    <p className="text-xs font-heading" style={{ color: 'rgba(255,255,255,0.55)' }}>{item.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ContactHeroCards />
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />

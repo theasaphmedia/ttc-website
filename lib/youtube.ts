@@ -6,6 +6,7 @@ const MAX_RESULTS = 20
 
 /* ─── Music detection ─────────────────────────────────────────────── */
 const MUSIC_KEYWORDS = [
+  'worship', 'praise', 'lift', 'power praise',
   'official video', 'official audio', 'music video', 'lyric video',
   'worship song', 'praise song', 'ft.', 'feat.', 'prod.', '(audio)',
   '(video)', 'sounds of transformation', 'ambience',

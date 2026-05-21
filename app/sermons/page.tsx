@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { SermonGrid } from '@/components/sermons/SermonGrid'
+import { SermonHeroCards } from '@/components/sermons/SermonHeroCards'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -56,22 +57,7 @@ export default function SermonsPage() {
               </a>
             </div>
             {/* RIGHT — feature highlights */}
-            <div className="hidden lg:grid grid-cols-2 gap-4">
-              {[
-                { icon: '🎙️', label: 'Fresh Sermons',  sub: 'New messages weekly',    color: '#4ea8f9' },
-                { icon: '📖', label: 'Word-Based',     sub: 'Deep Bible teaching',     color: '#f7931e' },
-                { icon: '🔥', label: 'Spirit-Led',     sub: 'Anointed ministry',       color: '#22b573' },
-                { icon: '🌍', label: 'Watch Anywhere', sub: 'Online & on YouTube',     color: '#4ea8f9' },
-              ].map((item) => (
-                <div key={item.label} className="p-5 rounded-2xl flex flex-col gap-3 touch-card-glow" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span className="text-3xl touch-float">{item.icon}</span>
-                  <div>
-                    <p className="font-heading font-black text-white text-sm mb-0.5">{item.label}</p>
-                    <p className="text-xs font-heading" style={{ color: item.color }}>{item.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <SermonHeroCards />
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />

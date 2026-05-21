@@ -34,6 +34,7 @@ export function SermonGrid() {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<SermonCategory>('All')
   const [playing, setPlaying] = useState<YouTubeSermon | null>(null)
+  const [hoveredCat, setHoveredCat] = useState<SermonCategory | null>(null)
   const [nextPageToken, setNextPageToken] = useState<string | undefined>()
   const [loadingMore, setLoadingMore] = useState(false)
 
@@ -113,11 +114,14 @@ export function SermonGrid() {
             <button
               key={cat}
               onClick={() => setCategory(cat)}
-              className="shrink-0 px-4 py-2 rounded-full text-xs font-heading font-bold transition-all duration-200"
+              onMouseEnter={() => setHoveredCat(cat)}
+              onMouseLeave={() => setHoveredCat(null)}
+              className="shrink-0 px-4 py-2 rounded-full text-xs font-heading font-bold transition-all duration-200 active:scale-95"
               style={{
-                background: category === cat ? '#153093' : 'var(--off-white)',
-                color: category === cat ? '#fff' : 'var(--text-muted)',
-                border: `1px solid ${category === cat ? '#153093' : 'var(--gray-200)'}`,
+                background: category === cat ? '#153093' : hoveredCat === cat ? 'rgba(21,48,147,0.08)' : 'var(--off-white)',
+                color: category === cat ? '#fff' : hoveredCat === cat ? '#153093' : 'var(--text-muted)',
+                border: `1px solid ${category === cat ? '#153093' : hoveredCat === cat ? 'rgba(21,48,147,0.35)' : 'var(--gray-200)'}`,
+                transform: hoveredCat === cat && category !== cat ? 'translateY(-2px)' : 'translateY(0)',
               }}
             >
               {cat}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { TTCStory } from '@/components/about/TTCStory'
+import { AboutHeroStats } from '@/components/about/AboutHeroStats'
 import { MissionVisionBlock } from '@/components/about/MissionVisionBlock'
 import { PastorDanielSection } from '@/components/about/PastorDanielSection'
 import { CTABanner } from '@/components/home/CTABanner'
@@ -78,23 +79,7 @@ export default function AboutPage() {
               </div>
             </div>
             {/* RIGHT — key stats panel */}
-            <div className="hidden lg:grid grid-cols-2 gap-4">
-              {[
-                { value: '1M+',    label: 'Believers to Transform', color: '#4ea8f9' },
-                { value: '3 Yrs',  label: 'Mandate Timeline',       color: '#f7931e' },
-                { value: '2010',   label: 'Ministry Founded',        color: '#22b573' },
-                { value: 'Global', label: 'Reach & Impact',          color: '#4ea8f9' },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col justify-center p-6 rounded-2xl touch-card-glow"
-                  style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
-                >
-                  <span className="font-heading font-black text-4xl leading-none mb-2" style={{ color: stat.color }}>{stat.value}</span>
-                  <span className="text-xs font-heading font-semibold uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>{stat.label}</span>
-                </div>
-              ))}
-            </div>
+            <AboutHeroStats />
           </div>
         </div>
         <WaveDivider fillColor="#ffffff" variant="curve" height={80} />

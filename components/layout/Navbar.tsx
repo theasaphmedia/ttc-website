@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { label: 'Ministry Groups', href: '/ministry-groups' },
   { label: 'Sermons', href: '/sermons' },
   { label: 'Programs', href: '/programs' },
+  { label: 'Contact', href: '/contact' },
   {
     label: 'More',
     href: '#',
