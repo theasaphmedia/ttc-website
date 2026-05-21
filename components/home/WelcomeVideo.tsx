@@ -7,7 +7,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
 // PLACEHOLDER — swap this with the real video ID when client supplies the URL
 // e.g. for https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  videoId = 'dQw4w9WgXcQ'
-const VIDEO_ID = process.env.NEXT_PUBLIC_WELCOME_VIDEO_ID ?? 'PLACEHOLDER'
+const VIDEO_ID = process.env.NEXT_PUBLIC_WELCOME_VIDEO_ID ?? 'TpKALnE2eCY'
 
 export function WelcomeVideo() {
   const isPlaceholder = VIDEO_ID === 'PLACEHOLDER'
@@ -36,8 +36,7 @@ export function WelcomeVideo() {
             <div
               className="relative w-full rounded-3xl overflow-hidden"
               style={{
-                paddingBottom: isPlaceholder ? undefined : '56.25%',
-                aspectRatio: isPlaceholder ? '16 / 9' : undefined,
+                paddingBottom: '56.25%',
                 background: 'linear-gradient(135deg, #153093 0%, #0d1117 100%)',
                 boxShadow: '0 30px 80px rgba(21,48,147,0.25)',
               }}
