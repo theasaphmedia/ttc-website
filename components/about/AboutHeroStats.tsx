@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 const STATS = [
   { value: '1M+',    label: 'Believers to Transform', color: '#4ea8f9' },
   { value: '3 Yrs',  label: 'Mandate Timeline',       color: '#f7931e' },
-  { value: '2010',   label: 'Ministry Founded',        color: '#22b573' },
+  { value: 'July 2025', label: 'TTC Founded',          color: '#22b573' },
   { value: 'Global', label: 'Reach & Impact',          color: '#4ea8f9' },
 ]
 

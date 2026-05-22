@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     default: 'The Transformation Camp — The Place of Your Making',
   },
   description:
-    'The Transformation Camp (TTC) is a love-centred, Word-compliant, Spirit-empowered ministry dedicated to raising purpose-driven believers. Join us every 1st and 3rd Friday.',
+    'The Transformation Camp (TTC) is a love-centred, Word-compliant, Spirit-empowered ministry dedicated to raising purpose-driven believers. Join us every 1st and 3rd Saturday.',
   keywords: [
     'The Transformation Camp',
     'TTC',

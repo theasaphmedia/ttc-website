@@ -105,8 +105,8 @@ export function ContactSection() {
             <div className="flex flex-col gap-3 mb-8">
               {[
                 { icon: MapPin, label: 'Address', value: '38A, Ikota Villa, Ikota, Lagos, Nigeria', color: '#153093' },
-                { icon: Mail,   label: 'Email',   value: 'Connect via the form',                    color: '#f7931e' },
-                { icon: Phone,  label: 'Phone',   value: 'Contact details coming soon',             color: '#22b573' },
+                { icon: Mail,   label: 'Email',   value: 'hello@ttconline.org',                      color: '#f7931e' },
+                { icon: Phone,  label: 'Phone',   value: '+234 905 870 8101',                        color: '#22b573' },
               ].map(({ icon: Icon, label, value, color }) => (
                 <ContactInfoCard key={label} Icon={Icon} label={label} value={value} color={color} />
               ))}

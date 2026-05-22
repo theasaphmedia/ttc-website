@@ -203,7 +203,7 @@ export default function TICPage() {
                   transition: 'all 0.7s ease 0.45s',
                 }}
               >
-                1 million believers in 3 years. It starts in your city. Are you ready to be
+                1 million Ministry Leaders. It starts in your city. Are you ready to be
                 the catalyst for transformation where you are?
               </p>
 

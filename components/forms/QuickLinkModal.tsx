@@ -55,7 +55,7 @@ function getFields(formType: FormType) {
       ]
     case 'membership_class':
       return [
-        { key: 'preferred_date', label: 'Preferred Class Date', type: 'text', placeholder: 'E.g. First Friday of June', required: false },
+        { key: 'preferred_date', label: 'Preferred Class Date', type: 'text', placeholder: 'E.g. First Saturday of June', required: false },
         { key: 'new_member', label: 'Are you a new member?', type: 'select', options: ['Yes', 'No — just curious'], required: false },
       ]
     case 'ministry_group_class':

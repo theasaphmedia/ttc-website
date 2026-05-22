@@ -16,7 +16,7 @@ const STRATEGY_STEPS = [
 const KEY_FACTS = [
   'An expression of Binah Church International',
   'Led by Pastor Daniel Odinaka (P.Dee)',
-  'Mandate to reach 1 million believers in 3 years',
+  'Mandate to reach 1 million Ministry Leaders',
   'Active in Nigeria, Canada, USA, UK/EU & beyond',
   'Weekly campus meetings — online & in-person',
 ]
@@ -103,7 +103,7 @@ export function TTCStory() {
               </p>
               <p>
                 Our mandate is bold:{' '}
-                <strong style={{ color: 'var(--egyptian-blue)' }}>1 million believers transformed in 3 years</strong> — through
+                <strong style={{ color: 'var(--egyptian-blue)' }}>1 million Ministry Leaders</strong> — through
                 campus meetings online and across Nigeria, Canada, the US, the UK/EU, and beyond.
               </p>
             </div>

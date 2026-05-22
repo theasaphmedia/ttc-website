@@ -92,7 +92,7 @@ function PhotoCard() {
         className="relative w-full rounded-3xl overflow-hidden shadow-2xl group/photo"
         style={{ aspectRatio: '3/4', maxHeight: '600px', transform: `translate(${px}px, ${py}px)`, transition: 'transform 0.08s linear', willChange: 'transform' }}
       >
-        <Image src="/images/pastor/pastor-daniel-pulpit.jpeg" alt="Pastor Daniel Odinaka" fill className="object-cover object-top transition-transform duration-700 group-hover/photo:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" priority />
+        <Image src="/images/pastor/pastor-daniel.jpg" alt="Pastor Daniel Odinaka" fill className="object-cover object-top transition-transform duration-700 group-hover/photo:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" priority />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.92) 0%, rgba(13,17,23,0.1) 50%, transparent 100%)' }} />
         <div className="absolute top-0 left-0 w-48 h-48 opacity-20 transition-opacity duration-300 group-hover/photo:opacity-30" style={{ background: '#153093', borderRadius: '0 0 100% 0' }} />
         {/* Hover shimmer */}
@@ -141,7 +141,7 @@ export function PastorDanielSection() {
               <p>Through the transformative power of God's Word, he helps believers discover who they are, grow in devotion, and live out their assignment with confidence.</p>
               <p>He is the founder of <strong style={{ color: 'var(--text-body)' }}>Ambience Global Network</strong>, a music label dedicated to promoting anointed ministers and blessing lives through worship.</p>
               <p>Beyond the pulpit, Pst. Daniel is a <strong style={{ color: 'var(--text-body)' }}>tech entrepreneur</strong> and co-founder of several tech startups across Nigeria, North America, and Europe.</p>
-              <p>He began his ministerial journey in <strong style={{ color: 'var(--text-body)' }}>2010</strong> as a youth pastor in RCCG, and is married to <strong style={{ color: 'var(--text-body)' }}>Goodness Odinaka</strong>, his co-labourer in God's vineyard.</p>
+              <p>He began his ministerial journey in <strong style={{ color: 'var(--text-body)' }}>2010</strong> as a youth pastor in RCCG. Driven by a burden for purpose and discipleship, he founded <strong style={{ color: 'var(--text-body)' }}>The Transformation Camp in July 2025</strong>. He is married to <strong style={{ color: 'var(--text-body)' }}>Goodness Odinaka</strong>, his co-labourer in God's vineyard.</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mt-10">

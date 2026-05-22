@@ -47,8 +47,8 @@ function SchedulePreviewCard({ item }: { item: { label: string; detail: string; 
 }
 
 const PROGRAM_NOTES = [
-  { icon: Calendar, title: '1st Friday of Every Month', detail: '12:00 PM (Noon)', sub: 'Monthly Transformation Service',  color: '#153093' },
-  { icon: Calendar, title: '3rd Friday of Every Month', detail: '12:00 PM (Noon)', sub: 'Monthly Transformation Service',  color: '#22b573' },
+  { icon: Calendar, title: '1st Saturday of Every Month', detail: '12:00 PM (Noon)', sub: 'Monthly Transformation Service',  color: '#153093' },
+  { icon: Calendar, title: '3rd Saturday of Every Month', detail: '12:00 PM (Noon)', sub: 'Monthly Transformation Service',  color: '#22b573' },
   { icon: Calendar, title: 'Quarterly Ingathering',     detail: 'Once every quarter', sub: 'All ministry groups assemble', color: '#f7931e' },
 ]
 
@@ -191,14 +191,14 @@ export default function ProgramsPage() {
               <h1 className="font-heading font-black text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>Come as You Are.</h1>
               <p className="font-accent mb-6" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#f7931e' }}>Leave Transformed.</p>
               <p className="text-base md:text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)', fontFamily: 'var(--font-open-sans)' }}>
-                TTC gathers every 1st and 3rd Friday of the month for Spirit-empowered, Word-based teaching. Online and in-person.
+                TTC gathers every 1st and 3rd Saturday of the month for Spirit-empowered, Word-based teaching. Online and in-person.
               </p>
             </div>
             {/* RIGHT — schedule preview */}
             <div className="hidden lg:flex flex-col gap-4">
               {[
-                { label: '1st Friday', detail: 'Every Month — 12:00 PM', color: '#4ea8f9' },
-                { label: '3rd Friday', detail: 'Every Month — 12:00 PM', color: '#f7931e' },
+                { label: '1st Saturday', detail: 'Every Month — 12:00 PM', color: '#4ea8f9' },
+                { label: '3rd Saturday', detail: 'Every Month — 12:00 PM', color: '#f7931e' },
                 { label: 'Quarterly Ingathering', detail: 'All Ministry Groups Assemble', color: '#22b573' },
               ].map((item) => (
                 <SchedulePreviewCard key={item.label} item={item} />

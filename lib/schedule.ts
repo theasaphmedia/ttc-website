@@ -5,18 +5,18 @@ export interface ServiceDate {
   description: string
 }
 
-/** Returns the Nth Friday of a given month/year (1-indexed) */
-function getNthFridayOfMonth(year: number, month: number, n: number): Date {
+/** Returns the Nth Saturday of a given month/year (1-indexed) */
+function getNthSaturdayOfMonth(year: number, month: number, n: number): Date {
   const d = new Date(year, month, 1)
-  // Find first Friday
-  const dayOfWeek = d.getDay() // 0=Sun, 5=Fri
-  const daysUntilFriday = (5 - dayOfWeek + 7) % 7
-  d.setDate(1 + daysUntilFriday + (n - 1) * 7)
+  // Find first Saturday
+  const dayOfWeek = d.getDay() // 0=Sun, 6=Sat
+  const daysUntilSaturday = (6 - dayOfWeek + 7) % 7
+  d.setDate(1 + daysUntilSaturday + (n - 1) * 7)
   d.setHours(12, 0, 0, 0) // 12:00 PM
   return d
 }
 
-/** Returns the next N upcoming 1st and 3rd Fridays from today */
+/** Returns the next N upcoming 1st and 3rd Saturdays from today */
 export function getNextServiceDates(count = 4): ServiceDate[] {
   const results: ServiceDate[] = []
   const now = new Date()
@@ -24,23 +24,23 @@ export function getNextServiceDates(count = 4): ServiceDate[] {
   let year = now.getFullYear()
 
   while (results.length < count) {
-    const firstFriday = getNthFridayOfMonth(year, month, 1)
-    const thirdFriday = getNthFridayOfMonth(year, month, 3)
+    const firstSaturday = getNthSaturdayOfMonth(year, month, 1)
+    const thirdSaturday = getNthSaturdayOfMonth(year, month, 3)
 
-    if (firstFriday > now) {
+    if (firstSaturday > now) {
       results.push({
-        date: firstFriday,
+        date: firstSaturday,
         type: 'Regular Service',
-        label: '1st Friday Service',
+        label: '1st Saturday Service',
         description: 'Monthly gathering — 12:00 PM',
       })
     }
 
-    if (results.length < count && thirdFriday > now) {
+    if (results.length < count && thirdSaturday > now) {
       results.push({
-        date: thirdFriday,
+        date: thirdSaturday,
         type: 'Regular Service',
-        label: '3rd Friday Service',
+        label: '3rd Saturday Service',
         description: 'Monthly gathering — 12:00 PM',
       })
     }

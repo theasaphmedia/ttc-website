@@ -135,21 +135,23 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="shrink-0" style={{ color: '#4ea8f9' }} />
-                <span
-                  className="text-sm"
-                  style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-open-sans)' }}
+                <a
+                  href="mailto:hello@ttconline.org"
+                  className="text-sm transition-colors hover:text-white"
+                  style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-open-sans)' }}
                 >
-                  [Email — coming soon]
-                </span>
+                  hello@ttconline.org
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="shrink-0" style={{ color: '#4ea8f9' }} />
-                <span
-                  className="text-sm"
-                  style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'var(--font-open-sans)' }}
+                <a
+                  href="tel:+2349058708101"
+                  className="text-sm transition-colors hover:text-white"
+                  style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-open-sans)' }}
                 >
-                  [Phone — coming soon]
-                </span>
+                  +234 905 870 8101
+                </a>
               </li>
             </ul>
 

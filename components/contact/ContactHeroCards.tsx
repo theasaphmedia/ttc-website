@@ -5,8 +5,8 @@ import { MapPin, Mail, Phone, Youtube } from 'lucide-react'
 
 const CARDS = [
   { Icon: MapPin,  label: '38A Ikota Villa', sub: 'Ikota, Lagos, Nigeria',      color: '#4ea8f9' },
-  { Icon: Mail,    label: 'Email Us',         sub: 'Contact info coming soon',   color: '#f7931e' },
-  { Icon: Phone,   label: 'Phone',            sub: 'Details coming soon',        color: '#22b573' },
+  { Icon: Mail,    label: 'Email Us',         sub: 'hello@ttconline.org',         color: '#f7931e', href: 'mailto:hello@ttconline.org' },
+  { Icon: Phone,   label: 'Phone',            sub: '+234 905 870 8101',           color: '#22b573', href: 'tel:+2349058708101' },
   { Icon: Youtube, label: 'Social Media',     sub: 'Follow @jointtc on YouTube', color: '#4ea8f9' },
 ]
 

@@ -323,8 +323,8 @@ export function MissionVision() {
                 className="font-heading font-bold mb-8"
                 style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: 'rgba(255,255,255,0.6)' }}
               >
-                believers transformed in{' '}
-                <span style={{ color: '#4ea8f9' }}>3 years</span>
+                <span style={{ color: '#4ea8f9' }}>Ministry Leaders</span>{' '}
+                raised for God's kingdom
               </p>
 
               <div className="flex flex-wrap justify-center gap-2">
