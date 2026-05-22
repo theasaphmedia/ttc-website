@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const FROM_EMAIL = 'TTC Website <noreply@thetransformationcamp.org>'
+const FROM_EMAIL = 'TTC Website <hello@ttconline.org>'
 
 export async function sendNotificationEmail(subject: string, html: string) {
   try {
