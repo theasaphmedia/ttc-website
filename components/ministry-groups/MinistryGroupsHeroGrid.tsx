@@ -11,7 +11,7 @@ const GROUPS = [
   { Icon: Globe,         name: 'Community',   color: '#22b573' },
   { Icon: Clapperboard,  name: 'Media',       color: '#153093' },
   { Icon: ClipboardList, name: 'Admin',       color: '#4ea8f9' },
-  { Icon: Users,         name: '7 Groups',    color: '#f7931e' },
+  { Icon: Users,         name: '9 Groups',    color: '#f7931e' },
 ]
 
 function GroupIconCard({ Icon, name, color, index }: typeof GROUPS[0] & { index: number }) {

@@ -10,7 +10,7 @@ import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
 
 export const metadata: Metadata = {
   title: 'Ministry Groups — The Transformation Camp',
-  description: "Find your place and serve your purpose. Join one of TTC's 7 ministry groups.",
+  description: "Find your place and serve your purpose. Join one of TTC's 9 ministry groups.",
 }
 
 export default function MinistryGroupsPage() {
@@ -53,10 +53,10 @@ export default function MinistryGroupsPage() {
               </p>
               <Link href="#groups" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-heading font-bold text-sm text-white touch-pulse-orange"
                 style={{ background: '#f7931e', boxShadow: '0 4px 20px rgba(247,147,30,0.35)' }}>
-                Explore All 7 Groups →
+                Explore All 9 Groups →
               </Link>
             </div>
-            {/* RIGHT — 7 group icons cluster */}
+            {/* RIGHT — 9 group icons cluster */}
             <MinistryGroupsHeroGrid />
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function MinistryGroupsPage() {
       <section id="groups" className="section-pad bg-white">
         <div className="container-ttc">
           <div className="text-center mb-14">
-            <span className="section-label">7 Groups</span>
+            <span className="section-label">9 Groups</span>
             <h2 className="section-title">
               Our <span className="text-gradient-blue">Ministry Groups</span>
             </h2>
@@ -92,7 +92,7 @@ export default function MinistryGroupsPage() {
               ))}
             </div>
             <p className="text-center text-[10px] font-heading font-bold tracking-widest uppercase mt-1 mb-4" style={{ color: 'var(--text-muted)' }}>
-              ← Swipe to explore all 7 groups →
+              ← Swipe to explore all 9 groups →
             </p>
           </div>
 
