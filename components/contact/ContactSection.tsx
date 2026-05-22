@@ -68,19 +68,28 @@ export function ContactSection() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setForm(prev => ({ ...prev, [k]: e.target.value }))
 
+  const [errorMsg, setErrorMsg] = useState('')
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setStatus('sending')
+    setErrorMsg('')
     try {
       const res = await fetch('/api/submit-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ form_type: 'contact', ...form }),
       })
-      if (!res.ok) throw new Error()
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
+        setErrorMsg(body?.error ?? `HTTP ${res.status}`)
+        setStatus('error')
+        return
+      }
       setStatus('success')
       setForm({ name: '', email: '', phone: '', subject: '', message: '' })
-    } catch {
+    } catch (err) {
+      setErrorMsg(String(err))
       setStatus('error')
     }
   }
@@ -299,11 +308,11 @@ export function ContactSection() {
 
                   {status === 'error' && (
                     <div
-                      className="flex items-center gap-2 text-sm p-3 rounded-xl"
+                      className="flex items-start gap-2 text-sm p-3 rounded-xl"
                       style={{ background: 'rgba(239,68,68,0.08)', color: '#dc2626' }}
                     >
-                      <AlertCircle size={16} />
-                      Something went wrong. Please try again.
+                      <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                      <span>{errorMsg || 'Something went wrong. Please try again.'}</span>
                     </div>
                   )}
 
@@ -313,18 +322,4 @@ export function ContactSection() {
                     className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-heading font-bold text-white text-sm transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60"
                     style={{ background: '#153093', boxShadow: '0 4px 20px rgba(21,48,147,0.3)' }}
                   >
-                    {status === 'sending' ? (
-                      'Sending...'
-                    ) : (
-                      <>Send Message <Send size={15} /></>
-                    )}
-                  </button>
-                </form>
-              )}
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  )
-}
+                  
