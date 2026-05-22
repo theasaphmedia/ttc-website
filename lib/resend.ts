@@ -1,23 +1,37 @@
-import { Resend } from 'resend'
+// Brevo (formerly Sendinblue) transactional email
+// Docs: https://developers.brevo.com/reference/sendtransacemail
 
-const FROM_EMAIL = 'TTC Website <hello@ttconline.org>'
+const FROM_NAME = 'TTC Website'
+const FROM_EMAIL = 'hello@ttconline.org'
 
 export async function sendNotificationEmail(subject: string, html: string) {
   try {
-    const apiKey = process.env.RESEND_API_KEY
-    if (!apiKey) return // Resend not configured yet — skip silently
+    const apiKey = process.env.BREVO_API_KEY
+    if (!apiKey) return // Brevo not configured yet — skip silently
 
-    const resend = new Resend(apiKey)
     const notifyEmail = process.env.RESEND_NOTIFY_EMAIL ?? 'theasaphmedia@gmail.com'
 
-    await resend.emails.send({
-      from: FROM_EMAIL,
-      to: notifyEmail,
-      subject,
-      html,
+    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'api-key': apiKey,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        sender: { name: FROM_NAME, email: FROM_EMAIL },
+        to: [{ email: notifyEmail }],
+        subject,
+        htmlContent: html,
+      }),
     })
+
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('Brevo email error:', err)
+    }
   } catch (err) {
     // Non-fatal — log but don't throw; Supabase insert is the source of truth
-    console.error('Resend email error:', err)
+    console.error('Brevo email error:', err)
   }
 }

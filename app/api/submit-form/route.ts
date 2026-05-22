@@ -22,6 +22,16 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Debug: check env vars are present
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!supabaseUrl || !serviceKey) {
+      return NextResponse.json(
+        { error: `Missing env vars — URL: ${!!supabaseUrl}, KEY: ${!!serviceKey}` },
+        { status: 500 },
+      )
+    }
+
     const supabase = createServerClient()
     const { error } = await supabase.from('form_submissions').insert({
       form_type,
@@ -33,7 +43,7 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       console.error('Supabase insert error:', error)
-      return NextResponse.json({ error: 'Failed to save submission' }, { status: 500 })
+      return NextResponse.json({ error: `Supabase error: ${error.message}` }, { status: 500 })
     }
 
     await sendNotificationEmail(
@@ -51,6 +61,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('submit-form error:', err)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: `Internal error: ${String(err)}` }, { status: 500 })
   }
 }
