@@ -7,7 +7,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '🎵',
     color: '#153093',
     intent: 'join',
-    description: 'Every great move of God is carried on the wings of worship. The Music Group exists to lead the TTC family — and every soul we reach — into the undeniable presence of God. Whether you sing, play an instrument, write songs, or simply carry a deep burden for worship, this is where you belong. We don\'t just perform; we minister. We don\'t just fill a slot; we carry an atmosphere. If your gift is music and your heart beats for the glory of God to be experienced in a room, come join the team.',
+    description: "Every great move of God is carried on the wings of worship. The Music Group exists to lead the TTC family — and every soul we reach — into the undeniable presence of God. Whether you sing, play an instrument, write songs, or simply carry a deep burden for worship, this is where you belong. We don't just perform; we minister. We don't just fill a slot; we carry an atmosphere. If your gift is music and your heart beats for the glory of God to be experienced in a room, come join the team.",
     formType: 'ministry_group_music',
   },
   {
@@ -17,7 +17,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '🚂',
     color: '#22b573',
     intent: 'join',
-    description: 'The gospel doesn\'t sit still — and neither do we. The Locomotive Group is TTC\'s evangelism frontline: the team that takes the message of Jesus beyond the four walls of the church and into the streets, campuses, markets, and communities where people live. MJK (Making Jesus Known) is our mandate — going out, sharing the Word, and bringing people in. But we don\'t stop at the altar call. We also handle intentional, consistent follow-up, making sure every new soul that encounters Christ at TTC is nurtured, welcomed, and connected. If you have a passion for souls and a heart that burns for the lost, this group is your assignment.',
+    description: "The gospel doesn't sit still — and neither do we. The Locomotive Group is TTC's evangelism frontline: the team that takes the message of Jesus beyond the four walls of the church and into the streets, campuses, markets, and communities where people live. MJK (Making Jesus Known) is our mandate — going out, sharing the Word, and bringing people in. But we don't stop at the altar call. We also handle intentional, consistent follow-up, making sure every new soul that encounters Christ at TTC is nurtured, welcomed, and connected. If you have a passion for souls and a heart that burns for the lost, this group is your assignment.",
     formType: 'ministry_group_locomotive',
   },
   {
@@ -27,7 +27,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '📖',
     color: '#f7931e',
     intent: 'learn',
-    description: 'You can\'t be transformed by what you don\'t understand. The Transformative Word Group (TWG) is TTC\'s Bible study and discipleship arm — a community of believers committed to going deeper in the Word of God. Through structured study sessions, devotionals, discussions, and teaching resources, the TWG helps you build a solid, unshakeable foundation in Scripture. Whether you\'re a new believer trying to understand the basics or a growing Christian hungry for more depth, TWG meets you where you are and takes you further. Enrol and start the journey of letting God\'s Word renew your mind and reshape your life.',
+    description: "You can't be transformed by what you don't understand. The Transformative Word Group (TWG) is TTC's Bible study and discipleship arm — a community of believers committed to going deeper in the Word of God. Through structured study sessions, devotionals, discussions, and teaching resources, the TWG helps you build a solid, unshakeable foundation in Scripture. Whether you're a new believer trying to understand the basics or a growing Christian hungry for more depth, TWG meets you where you are and takes you further. Enrol and start the journey of letting God's Word renew your mind and reshape your life.",
     formType: 'ministry_group_twg',
   },
   {
@@ -37,7 +37,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '⚡',
     color: '#4ea8f9',
     intent: 'join',
-    description: 'Prayer is not a programme at TTC — it is the engine. The Tremendous Power Group (TPG) is the intercession and prayer backbone of the ministry. This group carries the burden of corporate prayer, spiritual warfare, and the kind of persistent, faith-filled intercession that shifts atmospheres and moves mountains. From weekly prayer sessions to targeted intercession chains for the ministry, the nation, and specific needs within the TTC family, TPG shows up and prays through. If you believe in the power of prayer — not as a last resort but as a first response — and you want to be part of a community that takes the supernatural seriously, this is your group.',
+    description: "Prayer is not a programme at TTC — it is the engine. The Tremendous Power Group (TPG) is the intercession and prayer backbone of the ministry. This group carries the burden of corporate prayer, spiritual warfare, and the kind of persistent, faith-filled intercession that shifts atmospheres and moves mountains. From weekly prayer sessions to targeted intercession chains for the ministry, the nation, and specific needs within the TTC family, TPG shows up and prays through. If you believe in the power of prayer — not as a last resort but as a first response — and you want to be part of a community that takes the supernatural seriously, this is your group.",
     formType: 'ministry_group_tpg',
   },
   {
@@ -47,7 +47,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '🌍',
     color: '#153093',
     intent: 'join',
-    description: 'The church\'s responsibility doesn\'t end at the church gate — it extends into the community. The Community Impact Group (GIP) is TTC\'s social action and welfare arm: the hands and feet of Jesus in the real world. From welfare support and outreach programmes to social projects that address genuine community needs, GIP puts love into action. We believe that Kingdom living produces Kingdom impact — and that transformation isn\'t just spiritual, it\'s social, economic, and practical. If you have a heart for people, a passion for service, and you want to be an agent of tangible change in your community, join the Community Impact Group.',
+    description: "The church's responsibility doesn't end at the church gate — it extends into the community. The Community Impact Group (GIP) is TTC's social action and welfare arm: the hands and feet of Jesus in the real world. From welfare support and outreach programmes to social projects that address genuine community needs, GIP puts love into action. We believe that Kingdom living produces Kingdom impact — and that transformation isn't just spiritual, it's social, economic, and practical. If you have a heart for people, a passion for service, and you want to be an agent of tangible change in your community, join the Community Impact Group.",
     formType: 'ministry_group_gip',
   },
   {
@@ -57,7 +57,7 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '🎬',
     color: '#f7931e',
     intent: 'join',
-    description: 'Every sermon that reaches someone online, every beautiful graphic that stops someone mid-scroll, every live stream that brings TTC into a home thousands of kilometres away — that\'s the Media Operations Group at work. We handle every creative and technical aspect of ministry communications: graphic design, social media content, photography, videography, sound engineering, lighting, and live production. If you have a skill in any of these areas — or the willingness to learn — and you want to put your craft in service of the kingdom, this group is where you bring it. The ministry needs your gift. Apply through the link and let\'s build something powerful together.',
+    description: "Every sermon that reaches someone online, every beautiful graphic that stops someone mid-scroll, every live stream that brings TTC into a home thousands of kilometres away — that's the Media Operations Group at work. We handle every creative and technical aspect of ministry communications: graphic design, social media content, photography, videography, sound engineering, lighting, and live production. If you have a skill in any of these areas — or the willingness to learn — and you want to put your craft in service of the kingdom, this group is where you bring it. The ministry needs your gift. Apply through the link and let's build something powerful together.",
     formType: 'ministry_group_media',
   },
   {
@@ -67,8 +67,28 @@ export const MINISTRY_GROUPS: MinistryGroup[] = [
     icon: '📋',
     color: '#22b573',
     intent: 'join',
-    description: 'Great ministry doesn\'t happen by accident — it\'s built on excellent administration. The Administrative Support Group is the engine room that keeps TTC running smoothly: event coordination, protocol, logistics, documentation, guest management, and all the behind-the-scenes work that makes every programme feel seamless and every visitor feel honoured. If you have a gift for organisation, an eye for detail, and a servant\'s heart that takes satisfaction in making things work well — even when no one sees it — this group is your ministry. Excellence in administration is an act of worship, and TTC needs your hands.',
+    description: "Great ministry doesn't happen by accident — it's built on excellent administration. The Administrative Support Group is the engine room that keeps TTC running smoothly: event coordination, protocol, logistics, documentation, guest management, and all the behind-the-scenes work that makes every programme feel seamless and every visitor feel honoured. If you have a gift for organisation, an eye for detail, and a servant's heart that takes satisfaction in making things work well — even when no one sees it — this group is your ministry. Excellence in administration is an act of worship, and TTC needs your hands.",
     formType: 'ministry_group_admin',
+  },
+  {
+    slug: 'kingdom-business-career-group',
+    name: 'Kingdom Business & Career Group',
+    subtitle: 'KBC — Marketplace Ministry',
+    icon: '💼',
+    color: '#153093',
+    intent: 'join',
+    description: "The marketplace is a mission field — and God needs His people in it. The Kingdom Business and Career Group (KBC) exists for professionals, entrepreneurs, and career-driven believers who want to build with Kingdom values at the centre. This is a network of faith-filled men and women who understand that your career, your business, and your workplace are expressions of your calling — not distractions from it. Through fellowship, mentorship, practical training, and shared accountability, the KBC helps you develop kingdom culture in the marketplace: excellence without compromise, impact without apology, and success that serves a greater purpose. If you are a professional, a founder, a student building toward a career, or anyone who wants to thrive in the marketplace God's way — this group is your community.",
+    formType: 'ministry_group_kbc',
+  },
+  {
+    slug: 'stem-group',
+    name: 'STEM Group',
+    subtitle: 'Kingdom Technology — Training & Development',
+    icon: '🔬',
+    color: '#4ea8f9',
+    intent: 'join',
+    description: "Technology is not neutral — it is a tool, and in the right hands, it becomes a kingdom instrument. The STEM Group is TTC's home for believers in science, technology, engineering, and mathematics who want to grow technically while staying rooted spiritually. We believe God is raising a generation of kingdom technologists — developers, engineers, data scientists, designers, researchers — who will use their skills to solve real problems and advance God's agenda in the world. Through practical training, peer learning, collaborative projects, and mentorship, the STEM Group equips you to be excellent at your craft and purposeful in how you deploy it. Whether you are a student, a professional, or simply someone who wants to break into tech with a kingdom mindset — this is your tribe.",
+    formType: 'ministry_group_stem',
   },
 ]
 

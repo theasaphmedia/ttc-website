@@ -26,6 +26,8 @@ export type FormType =
   | 'ministry_group_gip'
   | 'ministry_group_media'
   | 'ministry_group_admin'
+  | 'ministry_group_kbc'
+  | 'ministry_group_stem'
   | 'tic_campus'
   | 'contact'
 
