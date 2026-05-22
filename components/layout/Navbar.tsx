@@ -68,13 +68,13 @@ export function Navbar() {
         )}
       >
         <div className="container-ttc">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-20 md:h-24">
 
             {/* Logo */}
             <Link href="/" className="relative flex items-center shrink-0">
               <TTCLogo
                 variant={solidBg ? 'dark' : 'white'}
-                size={52}
+                size={64}
                 className="transition-opacity duration-300"
               />
             </Link>
