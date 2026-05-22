@@ -236,8 +236,8 @@ export function HeroSection() {
               style={{ opacity: loaded ? 1 : 0, transition: 'opacity 1s ease 1.4s' }}
             >
               {[
-                { value: '1M+', label: 'Believers to Transform' },
-                { value: 'Global', label: 'Reach & Impact' },
+                { value: '1M+', label: 'Ministry Leaders' },
+                { value: '7', label: 'Ministry Groups' },
                 { value: 'Global', label: 'Reach & Impact' },
               ].map(({ value, label }, i) => (
                 <div
@@ -321,18 +321,6 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-        style={{ opacity: loaded ? 0.45 : 0, transition: 'opacity 1s ease 1.8s' }}
-        aria-hidden="true"
-      >
-        <span className="text-[10px] font-heading font-bold tracking-[0.25em] uppercase text-white">Scroll</span>
-        <div className="w-px h-10 relative overflow-hidden" style={{ background: 'rgba(255,255,255,0.25)' }}>
-          <div className="absolute top-0 w-full" style={{ background: 'white', height: '40%', animation: 'scrollDot 2s ease-in-out infinite' }} />
-        </div>
-      </div>
-
       {/* Bottom wave */}
       <div className="relative z-10 -mb-1">
         <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block', width: '100%' }}>
@@ -341,8 +329,6 @@ export function HeroSection() {
       </div>
 
       <style>{`
-        @keyframes scrollDot {
-          0%   { transform: translateY(-100%); opacity: 0; }
           50%  { opacity: 1; }
           100% { transform: translateY(250%); opacity: 0; }
         }
