@@ -74,7 +74,7 @@ export function Navbar() {
             <Link href="/" className="relative flex items-center shrink-0">
               <TTCLogo
                 variant={solidBg ? 'dark' : 'white'}
-                size={40}
+                size={52}
                 className="transition-opacity duration-300"
               />
             </Link>
@@ -177,7 +177,7 @@ export function Navbar() {
         <div className="fixed inset-0 z-[60] flex flex-col" style={{ background: '#0d1117' }}>
           <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/10">
             <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center">
-              <TTCLogo variant="white" size={36} />
+              <TTCLogo variant="white" size={48} />
             </Link>
             <button
               className="p-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-colors"

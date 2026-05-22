@@ -15,7 +15,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
 const STATS = [
   { value: '1M+',    label: 'Believers to Transform', color: '#153093' },
-  { value: '3 Yrs',  label: 'Mandate Timeline',       color: '#f7931e' },
+  { value: 'Global', label: 'Reach & Impact',          color: '#f7931e' },
   { value: '5+',     label: 'Cities Active',           color: '#22b573' },
   { value: 'Global', label: 'Reach & Vision',          color: '#4ea8f9' },
 ]

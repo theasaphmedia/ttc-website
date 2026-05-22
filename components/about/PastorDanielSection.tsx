@@ -92,7 +92,7 @@ function PhotoCard() {
         className="relative w-full rounded-3xl overflow-hidden shadow-2xl group/photo"
         style={{ aspectRatio: '3/4', maxHeight: '600px', transform: `translate(${px}px, ${py}px)`, transition: 'transform 0.08s linear', willChange: 'transform' }}
       >
-        <Image src="/images/pastor/pastor-daniel.jpg" alt="Pastor Daniel Odinaka" fill className="object-cover object-top transition-transform duration-700 group-hover/photo:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" priority />
+        <Image src="/images/pastor/pastor-daniel-pulpit.jpeg" alt="Pastor Daniel Odinaka" fill className="object-cover object-top transition-transform duration-700 group-hover/photo:scale-105" sizes="(max-width: 1024px) 100vw, 50vw" priority />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.92) 0%, rgba(13,17,23,0.1) 50%, transparent 100%)' }} />
         <div className="absolute top-0 left-0 w-48 h-48 opacity-20 transition-opacity duration-300 group-hover/photo:opacity-30" style={{ background: '#153093', borderRadius: '0 0 100% 0' }} />
         {/* Hover shimmer */}

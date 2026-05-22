@@ -8,7 +8,7 @@ import { BrandCurves } from '@/components/ui/BrandCurves'
 import { TTCLogo } from '@/components/ui/TTCLogo'
 
 const MOSAIC = [
-  { src: '/images/hero/hero-1.jpg',       alt: 'TTC Inaugural Service',  className: 'col-span-2 row-span-2' },
+  { src: '/images/hero/hero-pastor.jpg',   alt: 'Pastor Daniel Odinaka',  className: 'col-span-2 row-span-2' },
   { src: '/images/hero/hero-worship.jpg', alt: 'TTC Worship team',       className: 'col-span-1 row-span-1' },
   { src: '/images/hero/hero-2.jpg',       alt: 'TTC community',          className: 'col-span-1 row-span-1' },
   { src: '/images/hero/hero-crowd1.jpg',  alt: 'TTC gathering',          className: 'col-span-1 row-span-1' },
@@ -237,7 +237,7 @@ export function HeroSection() {
             >
               {[
                 { value: '1M+', label: 'Believers to Transform' },
-                { value: '3 Yrs', label: 'Mandate Timeline' },
+                { value: 'Global', label: 'Reach & Impact' },
                 { value: 'Global', label: 'Reach & Impact' },
               ].map(({ value, label }, i) => (
                 <div
@@ -309,7 +309,7 @@ export function HeroSection() {
             style={{ opacity: loaded ? 1 : 0, transition: 'opacity 1s ease 0.5s' }}
           >
             <Image
-              src="/images/hero/hero-1.jpg"
+              src="/images/hero/hero-pastor.jpg"
               alt="The Transformation Camp"
               fill
               className="object-cover object-top"
