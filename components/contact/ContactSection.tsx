@@ -62,13 +62,12 @@ function ContactInfoCard({ Icon, label, value, color }: { Icon: React.ElementTyp
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
 
   const set = (k: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
       setForm(prev => ({ ...prev, [k]: e.target.value }))
-
-  const [errorMsg, setErrorMsg] = useState('')
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -81,8 +80,8 @@ export function ContactSection() {
         body: JSON.stringify({ form_type: 'contact', ...form }),
       })
       if (!res.ok) {
-        const body = await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
-        setErrorMsg(body?.error ?? `HTTP ${res.status}`)
+        const body = await res.json().catch(() => ({ error: 'HTTP ' + res.status }))
+        setErrorMsg(body?.error ?? 'HTTP ' + res.status)
         setStatus('error')
         return
       }
@@ -106,7 +105,7 @@ export function ContactSection() {
               Connect with <span className="text-gradient-blue">TTC</span>
             </h2>
             <p className="mt-4 text-base leading-relaxed mb-10" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-              Reach out for any reason — ministry questions, media inquiries, partnerships, or just to say hello.
+              Reach out for any reason -- ministry questions, media inquiries, partnerships, or just to say hello.
               We respond to every message.
             </p>
 
@@ -121,7 +120,7 @@ export function ContactSection() {
               ))}
             </div>
 
-            {/* Map — OpenStreetMap (no API key needed) + click opens Google Maps / Maps app */}
+            {/* Map */}
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=Ikota+Villa+Estate,Ikota,Lagos,Nigeria"
               target="_blank"
@@ -135,7 +134,6 @@ export function ContactSection() {
               }}
               title="Open in Maps"
             >
-              {/* OpenStreetMap embed — always free, no key required */}
               <iframe
                 src="https://www.openstreetmap.org/export/embed.html?bbox=3.5504%2C6.4255%2C3.5704%2C6.4455&layer=mapnik&marker=6.4355%2C3.5604"
                 width="100%"
@@ -144,7 +142,6 @@ export function ContactSection() {
                 loading="lazy"
                 title="The Transformation Camp location"
               />
-              {/* Hover overlay — click-to-open hint */}
               <div
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: 'rgba(21,48,147,0.55)', backdropFilter: 'blur(2px)' }}
@@ -157,7 +154,6 @@ export function ContactSection() {
                   Open in Maps
                 </div>
               </div>
-              {/* Address chip */}
               <div
                 className="absolute bottom-4 left-4 right-4 flex items-center gap-3 px-4 py-3 rounded-xl pointer-events-none"
                 style={{
@@ -322,4 +318,14 @@ export function ContactSection() {
                     className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-heading font-bold text-white text-sm transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60"
                     style={{ background: '#153093', boxShadow: '0 4px 20px rgba(21,48,147,0.3)' }}
                   >
-                  
+                    {status === 'sending' ? 'Sending...' : 'Send Message'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </AnimatedSection>
+        </div>
+      </div>
+    </section>
+  )
+}
