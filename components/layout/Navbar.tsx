@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -21,6 +20,7 @@ const NAV_LINKS = [
     children: [
       { label: 'Circle Groups', href: '/circle-groups' },
       { label: 'Transformation In Your City', href: '/tic' },
+      { label: 'Training & Empowerment', href: '/training' },
       { label: 'Quick Links', href: '/quick-links' },
     ],
   },
@@ -100,7 +100,7 @@ export function Navbar() {
                       />
                     </button>
                     {dropdownOpen && (
-                      <div className="absolute top-full right-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2">
+                      <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2">
                         {link.children.map((child) => (
                           <Link
                             key={child.href}

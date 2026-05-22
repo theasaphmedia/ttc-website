@@ -28,6 +28,10 @@ export type FormType =
   | 'ministry_group_admin'
   | 'ministry_group_kbc'
   | 'ministry_group_stem'
+  | 'transformation_foundation_class'
+  | 'transformation_discipleship_class'
+  | 'transformation_ministry_school_l1'
+  | 'transformation_ministry_school_l2'
   | 'tic_campus'
   | 'contact'
 
@@ -88,7 +92,7 @@ export interface MinistryGroup {
   color: string
   description: string
   formType: FormType
-  intent?: 'join' | 'learn'  // 'join' = serve on the team | 'learn' = enrol to grow
+  intent?: 'join' | 'learn'
 }
 
 // Program / Schedule Types
