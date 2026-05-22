@@ -237,7 +237,7 @@ export function HeroSection() {
             >
               {[
                 { value: '1M+', label: 'Ministry Leaders' },
-                { value: '7', label: 'Ministry Groups' },
+                { value: '9', label: 'Ministry Groups' },
                 { value: 'Global', label: 'Reach & Impact' },
               ].map(({ value, label }, i) => (
                 <div
