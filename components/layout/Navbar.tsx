@@ -71,14 +71,10 @@ export function Navbar() {
           <div className="flex items-center justify-between h-20 md:h-24">
 
             {/* Logo */}
-            <Link
-              href="/"
-              className="relative flex items-center shrink-0 rounded-xl px-2 py-1 transition-all duration-300"
-              style={{ background: solidBg ? 'transparent' : 'rgba(255,255,255,0.12)', backdropFilter: solidBg ? 'none' : 'blur(8px)' }}
-            >
+            <Link href="/" className="relative flex items-center shrink-0">
               <TTCLogo
                 variant={solidBg ? 'dark' : 'white'}
-                size={68}
+                size={80}
                 className="transition-opacity duration-300"
               />
             </Link>
