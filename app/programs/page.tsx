@@ -222,22 +222,45 @@ export default function ProgramsPage() {
 
           {/* Location strips */}
           <div className="grid sm:grid-cols-2 gap-4 mb-20">
-            {[
-              { icon: MapPin,  label: 'In-Person',  text: 'Location details coming soon — contact us for directions', color: '#153093', bg: 'rgba(21,48,147,0.04)', border: 'rgba(21,48,147,0.12)' },
-              { icon: Wifi,    label: 'Live Online', text: 'Stream link shared before each service — subscribe on YouTube @jointtc', color: '#22b573', bg: 'rgba(34,181,115,0.05)', border: 'rgba(34,181,115,0.18)' },
-            ].map(({ icon: Icon, label, text, color, bg, border }) => (
-              <div
-                key={label}
-                className="flex items-start gap-4 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-default"
-                style={{ background: bg, border: `1px solid ${border}` }}
-              >
-                <Icon size={20} className="shrink-0 mt-0.5" style={{ color }} />
-                <div>
-                  <p className="font-heading font-bold text-sm mb-1" style={{ color }}>{label}</p>
-                  <p className="text-sm" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>{text}</p>
-                </div>
+            {/* In-Person */}
+            <a
+              href="https://maps.google.com/?q=38A+Ikota+Villa,+Ikota,+Lagos,+Nigeria"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
+              style={{ background: 'rgba(21,48,147,0.04)', border: '1px solid rgba(21,48,147,0.12)' }}
+            >
+              <MapPin size={20} className="shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" style={{ color: '#153093' }} />
+              <div>
+                <p className="font-heading font-bold text-sm mb-1" style={{ color: '#153093' }}>In-Person</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                  38A, Ikota Villa, Ikota<br />Lagos, Nigeria
+                </p>
+                <p className="text-xs mt-2 font-heading font-semibold" style={{ color: '#153093' }}>
+                  Get directions →
+                </p>
               </div>
-            ))}
+            </a>
+
+            {/* Live Online */}
+            <a
+              href="https://www.youtube.com/@jointtc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
+              style={{ background: 'rgba(34,181,115,0.05)', border: '1px solid rgba(34,181,115,0.18)' }}
+            >
+              <Wifi size={20} className="shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" style={{ color: '#22b573' }} />
+              <div>
+                <p className="font-heading font-bold text-sm mb-1" style={{ color: '#22b573' }}>Live Online</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                  Stream link shared before each service.
+                </p>
+                <p className="text-xs mt-2 font-heading font-semibold" style={{ color: '#22b573' }}>
+                  Subscribe on YouTube @jointtc →
+                </p>
+              </div>
+            </a>
           </div>
 
           {/* Upcoming dates */}
