@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { MapPin, Mail, Phone, Youtube, Instagram, Facebook, Twitter } from 'lucide-react'
 import { WaveDivider } from '@/components/ui/WaveDivider'
+import { TTCLogo } from '@/components/ui/TTCLogo'
 
 const QUICK_LINKS = [
   { label: 'Quick Links Hub', href: '/quick-links' },
@@ -28,28 +29,6 @@ const SOCIAL_LINKS = [
   { icon: Twitter, label: 'Twitter / X', href: '#' },
 ]
 
-function TTCLogoWhite() {
-  return (
-    <div className="flex items-center gap-3">
-      <div
-        className="flex items-center justify-center w-10 h-10 rounded-xl font-heading font-black text-white text-lg leading-none shrink-0"
-        style={{ background: 'rgba(255,255,255,0.12)', border: '1.5px solid rgba(255,255,255,0.2)' }}
-      >
-        <span>T</span>
-        <span style={{ color: '#f7931e', marginLeft: '-2px' }}>T</span>
-        <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.7em', alignSelf: 'flex-end', marginBottom: '1px' }}>C</span>
-      </div>
-      <div className="flex flex-col leading-none">
-        <span className="font-heading font-extrabold text-base tracking-tight leading-none text-white">
-          The Transformation
-        </span>
-        <span className="font-accent text-xl leading-tight" style={{ color: '#f7931e' }}>
-          Camp
-        </span>
-      </div>
-    </div>
-  )
-}
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -72,7 +51,7 @@ export function Footer() {
 
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1 lg:col-span-1">
-            <TTCLogoWhite />
+            <TTCLogo variant="white" size={44} />
             <p
               className="mt-5 text-sm leading-relaxed"
               style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-open-sans)' }}
