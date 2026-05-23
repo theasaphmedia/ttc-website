@@ -3,10 +3,10 @@
 import React, { useState } from 'react'
 
 const STATS = [
-  { value: '1M+',    label: 'Believers to Transform', color: '#4ea8f9' },
-  { value: 'Global', label: 'Reach & Impact',          color: '#f7931e' },
-  { value: 'July 2025', label: 'TTC Founded',          color: '#22b573' },
-  { value: 'Global', label: 'Reach & Impact',          color: '#4ea8f9' },
+  { value: '1M+',        label: 'Ministry Leaders',   color: '#4ea8f9' },
+  { value: 'Global',     label: 'Reach & Impact',     color: '#f7931e' },
+  { value: 'July 2025',  label: 'TTC Founded',        color: '#22b573' },
+  { value: 'Bi-weekly',  label: 'Campus Meetings',    color: '#153093' },
 ]
 
 function StatCard({ value, label, color }: typeof STATS[0]) {

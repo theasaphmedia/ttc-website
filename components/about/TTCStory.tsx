@@ -16,9 +16,9 @@ const STRATEGY_STEPS = [
 const KEY_FACTS = [
   'An expression of Binah Church International',
   'Led by Pastor Daniel Odinaka (P.Dee)',
-  'Mandate to reach 1 million Ministry Leaders',
-  'Active in Nigeria, Canada, USA, UK/EU & beyond',
-  'Weekly campus meetings — online & in-person',
+  'Mandate to transform 1 million Ministry Leaders',
+  'Based in Nigeria — with vision to reach Canada, USA, UK/EU & beyond',
+  'Bi-weekly campus meetings — online & onsite',
 ]
 
 function StrategyCard({ step, index }: { step: typeof STRATEGY_STEPS[0]; index: number }) {
@@ -102,9 +102,10 @@ export function TTCStory() {
                 grow in consistent devotion, and live out their God-given assignment.
               </p>
               <p>
-                Our mandate is bold:{' '}
-                <strong style={{ color: 'var(--egyptian-blue)' }}>1 million Ministry Leaders</strong> — through
-                campus meetings online and across Nigeria, Canada, the US, the UK/EU, and beyond.
+                Our mandate is clear: to transform{' '}
+                <strong style={{ color: 'var(--egyptian-blue)' }}>1 million Ministry Leaders</strong>{' '}
+                through physical campus and online meetings — currently rooted in Nigeria, with
+                vision to expand to Canada, the US, the UK/EU, and beyond.
               </p>
             </div>
 

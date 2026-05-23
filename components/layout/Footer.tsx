@@ -87,12 +87,14 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4
-              className="font-heading font-bold text-sm tracking-widest uppercase mb-5"
-              style={{ color: '#f7931e' }}
-            >
-              Quick Links
-            </h4>
+            <Link href="/quick-links">
+              <h4
+                className="font-heading font-bold text-sm tracking-widest uppercase mb-5 hover:opacity-75 transition-opacity cursor-pointer"
+                style={{ color: '#f7931e' }}
+              >
+                Quick Links ↗
+              </h4>
+            </Link>
             <ul className="space-y-3">
               {QUICK_LINKS.map(({ label, href }) => (
                 <li key={label}>

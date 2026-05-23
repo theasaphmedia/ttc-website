@@ -116,6 +116,42 @@ async function enrichWithDetails(
   }))
 }
 
+/* ─── Purpose sermon search ───────────────────────────────────────
+   Searches the TTC channel specifically for "purpose"-themed videos
+   and returns up to 2 that aren't already in the main results set.
+──────────────────────────────────────────────────────────────────── */
+async function fetchPurposeSupplements(
+  channelId: string,
+  existingIds: Set<string>,
+): Promise<YouTubeSermon[]> {
+  try {
+    const params = new URLSearchParams({
+      part: 'snippet',
+      channelId,
+      q: 'purpose',
+      type: 'video',
+      order: 'relevance',
+      maxResults: '6',
+      key: API_KEY,
+    })
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/search?${params}`,
+      { next: { revalidate: 21600 } },
+    )
+    if (!res.ok) return []
+    const data = await res.json()
+    const newItems: RawItem[] = (data.items ?? []).filter(
+      (item: RawItem) =>
+        !existingIds.has(item.id.videoId) &&
+        !isMusicVideo(item.snippet.title, item.snippet.description),
+    )
+    const enriched = await enrichWithDetails(newItems.slice(0, 2))
+    return enriched
+  } catch {
+    return []
+  }
+}
+
 /* ─── Public API ──────────────────────────────────────────────────── */
 
 /** Fetch sermon videos (non-music) from the TTC channel */
@@ -134,8 +170,15 @@ export async function fetchSermons(pageToken?: string): Promise<{
   }
   const { items, nextPageToken } = await fetchChannelVideos(channelId, pageToken)
   const allVideos = await enrichWithDetails(items)
-  // On the sermons page, show everything (let the page filter if needed)
-  // Music videos will still appear but are tagged so the UI can route them
+
+  // On the first page only, supplement with up to 2 purpose-themed sermons
+  // so the grid is always complete (they are deduped against the main results)
+  if (!pageToken) {
+    const existingIds = new Set(allVideos.map(v => v.id))
+    const purposeVideos = await fetchPurposeSupplements(channelId, existingIds)
+    return { sermons: [...allVideos, ...purposeVideos], nextPageToken }
+  }
+
   return { sermons: allVideos, nextPageToken }
 }
 

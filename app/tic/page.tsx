@@ -14,10 +14,10 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 
 
 const STATS = [
-  { value: '1M+',    label: 'Believers to Transform', color: '#153093' },
-  { value: 'Global', label: 'Reach & Impact',          color: '#f7931e' },
-  { value: '5+',     label: 'Cities Active',           color: '#22b573' },
-  { value: 'Global', label: 'Reach & Vision',          color: '#4ea8f9' },
+  { value: '1M+',      label: 'Ministry Leaders',   color: '#153093' },
+  { value: 'Global',   label: 'Reach & Vision',     color: '#f7931e' },
+  { value: '5+',       label: 'Cities Active',      color: '#22b573' },
+  { value: 'Online',   label: 'Campus Meetings',    color: '#4ea8f9' },
 ]
 
 // Hero stat card — dark themed, with tilt + entrance
