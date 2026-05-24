@@ -180,8 +180,8 @@ export function WhoWeAre() {
             <p className="text-base md:text-lg leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
               Our mandate is clear: to transform{' '}
               <strong style={{ color: 'var(--egyptian-blue)' }}>1 million Ministry Leaders</strong>
-              years through campus meetings online and across Nigeria, Canada, the US, the UK/EU,
-              and beyond.
+              {' '}through campus meetings — online and across Nigeria, with a vision to spread to
+              Canada, the US, the UK/EU, and beyond.
             </p>
             <Link
               href="/about"

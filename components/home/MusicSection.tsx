@@ -223,8 +223,8 @@ export function MusicSection() {
               label="Sounds of Transformation"
               title={
                 <>
-                  Music That Moves{' '}
-                  <span className="text-gradient-blue">Your Spirit</span>
+                  Sermons &amp; Music That{' '}
+                  <span className="text-gradient-blue">Uplift Your Spirit</span>
                 </>
               }
               subtitle="Anointed worship and ministry music by Pastor Daniel Odinaka — sounds that usher you into deeper fellowship with God."
