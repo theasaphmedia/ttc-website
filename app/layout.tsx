@@ -4,6 +4,7 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { CursorGlow } from '@/components/ui/CursorGlow'
+import { Analytics } from '@vercel/analytics/react'
 
 /* ─── Google Fonts ────────────────────────────────────────────────── */
 const montserrat = Montserrat({
@@ -25,12 +26,13 @@ const openSans = Open_Sans({
 
 /* ─── Metadata ────────────────────────────────────────────────────── */
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ttconline.org'),
   title: {
     template: '%s | The Transformation Camp',
     default: 'The Transformation Camp — The Place of Your Making',
   },
   description:
-    'The Transformation Camp (TTC) is a love-centred, Word-compliant, Spirit-empowered ministry dedicated to raising purpose-driven believers. Join us every 1st and 3rd Saturday.',
+    'The Transformation Camp (TTC) is a love-centred, Word-compliant, Spirit-empowered ministry raising Ministry Leaders through bi-weekly campus meetings online and onsite in Lagos, Nigeria.',
   keywords: [
     'The Transformation Camp',
     'TTC',
@@ -40,6 +42,9 @@ export const metadata: Metadata = {
     'Lagos ministry',
     'Christian church Lagos',
     'transformation',
+    'ministry leaders',
+    'purpose',
+    'discipleship',
   ],
   authors: [{ name: 'TAI Digital', url: 'https://theasaphmedia.com' }],
   creator: 'TAI Digital',
@@ -48,12 +53,22 @@ export const metadata: Metadata = {
     siteName: 'The Transformation Camp',
     title: 'The Transformation Camp — The Place of Your Making',
     description:
-      'Join The Transformation Camp — a ministry transforming lives through purpose, devotion, and kingdom principles.',
+      'A love-centred, Word-compliant, Spirit-empowered ministry raising 1 million Ministry Leaders. Bi-weekly campus meetings — online & onsite.',
+    url: 'https://ttconline.org',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'The Transformation Camp — The Place of Your Making',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Transformation Camp',
-    description: 'The Place of Your Making',
+    title: 'The Transformation Camp — The Place of Your Making',
+    description: 'Raising 1 million Ministry Leaders. The Place of Your Making.',
+    images: ['/og-image.png'],
   },
   icons: {
     icon: [
@@ -93,6 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
