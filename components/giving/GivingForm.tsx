@@ -91,16 +91,16 @@ export function GivingForm() {
         </div>
       </div>
 
-      {/* Coming Soon overlay */}
+      {/* Online giving — coming soon */}
       <div className="relative p-8 rounded-2xl text-center overflow-hidden" style={{ background: 'var(--off-white)', border: '1px solid var(--gray-200)' }}>
         <div className="absolute inset-0 flex items-center justify-center z-10" style={{ background: 'rgba(248,249,255,0.92)', backdropFilter: 'blur(4px)' }}>
           <div className="text-center px-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 text-xs font-heading font-bold tracking-widest uppercase" style={{ background: 'rgba(247,147,30,0.15)', color: '#f7931e', border: '1px solid rgba(247,147,30,0.3)' }}>
               Coming Soon
             </div>
-            <h3 className="font-heading font-bold text-xl mb-2" style={{ color: 'var(--dark)' }}>Online Giving</h3>
+            <h3 className="font-heading font-bold text-xl mb-2" style={{ color: 'var(--dark)' }}>Online Card Payment</h3>
             <p className="text-sm leading-relaxed max-w-xs mx-auto" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
-              Our secure Paystack payment integration is being activated. Please use bank transfer below while we set this up.
+              Our secure Paystack integration is being activated. Use the bank transfer details below to give right now.
             </p>
           </div>
         </div>
@@ -116,6 +116,7 @@ export function GivingForm() {
           </button>
         </div>
       </div>
+
     </div>
   )
 }
