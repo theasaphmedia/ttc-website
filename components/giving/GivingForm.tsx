@@ -91,7 +91,7 @@ export function GivingForm() {
 
   const selectedCat = CATEGORIES.find(c => c.key === category)!
 
-  async function handlePay(e: React.FormEvent) {
+  function handlePay(e: React.FormEvent) {
     e.preventDefault()
     setErrorMsg('')
 
@@ -103,45 +103,52 @@ export function GivingForm() {
 
     setStatus('loading')
 
-    const handler = window.PaystackPop.setup({
-      key: PAYSTACK_PUBLIC_KEY,
-      email: form.email.trim(),
-      amount: Math.round(amountNGN * 100), // kobo
-      currency: 'NGN',
-      firstname: form.name.trim().split(' ')[0],
-      lastname: form.name.trim().split(' ').slice(1).join(' ') || '',
-      phone: form.phone.trim() || undefined,
-      metadata: {
-        category,
-        categoryLabel: selectedCat.label,
-        note: form.note.trim() || undefined,
-        custom_fields: [
-          { display_name: 'Giving Category', variable_name: 'category', value: selectedCat.label },
-          ...(form.note ? [{ display_name: 'Note', variable_name: 'note', value: form.note }] : []),
-        ],
-      },
-      label: `TTC ${selectedCat.label}`,
-      callback: async (response: { reference: string }) => {
-        try {
-          const res = await fetch('/api/submit-giving', {
+    // Safety net — if popup never fires callback/onClose after 12s, reset
+    const safetyTimer = setTimeout(() => {
+      setStatus('idle')
+      setErrorMsg('Payment window did not open. Please check your connection and try again.')
+    }, 12000)
+
+    try {
+      const handler = window.PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: form.email.trim(),
+        amount: Math.round(amountNGN * 100),
+        currency: 'NGN',
+        firstname: form.name.trim().split(' ')[0],
+        lastname: form.name.trim().split(' ').slice(1).join(' ') || '',
+        phone: form.phone.trim() || '',
+        metadata: {
+          category,
+          categoryLabel: selectedCat.label,
+          note: form.note.trim(),
+          custom_fields: [
+            { display_name: 'Giving Category', variable_name: 'category', value: selectedCat.label },
+          ],
+        },
+        label: `TTC ${selectedCat.label}`,
+        callback: (response: { reference: string }) => {
+          clearTimeout(safetyTimer)
+          fetch('/api/submit-giving', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ reference: response.reference }),
-          })
-          if (!res.ok) throw new Error('Recording failed')
+          }).catch(() => {/* silent — payment succeeded regardless */})
           setStatus('success')
           setForm({ name: '', email: '', phone: '', amount: '', note: '' })
-        } catch {
-          // Payment succeeded even if recording fails — still show success
-          setStatus('success')
-        }
-      },
-      onClose: () => {
-        setStatus('idle')
-      },
-    })
-
-    handler.openIframe()
+        },
+        onClose: () => {
+          clearTimeout(safetyTimer)
+          setStatus('idle')
+        },
+      })
+      handler.openIframe()
+    } catch (err) {
+      clearTimeout(safetyTimer)
+      setStatus('idle')
+      setErrorMsg('Could not open payment window. Please try again.')
+      console.error('Paystack error:', err)
+    }
   }
 
   if (status === 'success') {
