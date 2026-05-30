@@ -13,6 +13,14 @@ const NAV_LINKS = [
   { label: 'Ministry Groups', href: '/ministry-groups' },
   { label: 'Sermons', href: '/sermons' },
   { label: 'Programs', href: '/programs' },
+  {
+    label: 'Blog & Events',
+    href: '#',
+    children: [
+      { label: 'Blog & Devotionals', href: '/devotionals' },
+      { label: 'Upcoming Events', href: '/programs#events' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
   {
     label: 'More',
@@ -20,7 +28,6 @@ const NAV_LINKS = [
     children: [
       { label: 'Circle Groups', href: '/circle-groups' },
       { label: 'Transformation In Your City', href: '/tic' },
-      { label: 'Training & Empowerment', href: '/training' },
       { label: 'Quick Links', href: '/quick-links' },
     ],
   },

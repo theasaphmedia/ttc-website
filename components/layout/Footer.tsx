@@ -24,6 +24,7 @@ const QUICK_LINKS = [
 
 const MINISTRY_LINKS = [
   { label: 'Ministry Groups', href: '/ministry-groups' },
+  { label: 'Blog & Devotionals', href: '/devotionals' },
   { label: 'Circle Groups', href: '/circle-groups' },
   { label: 'TIC -- Transform Your City', href: '/tic' },
   { label: 'Sermons', href: '/sermons' },
@@ -87,12 +88,12 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <Link href="/quick-links">
+            <Link href="/quick-links" className="group block mb-5">
               <h4
-                className="font-heading font-bold text-sm tracking-widest uppercase mb-5 hover:opacity-75 transition-opacity cursor-pointer"
+                className="font-heading font-bold text-sm tracking-widest uppercase group-hover:opacity-75 transition-opacity"
                 style={{ color: '#f7931e' }}
               >
-                Quick Links ↗
+                Quick Links
               </h4>
             </Link>
             <ul className="space-y-3">
