@@ -70,6 +70,7 @@ function Badge({ type }: { type: string }) {
 
 // ─── Login Screen ─────────────────────────────────────────────────────────────
 function LoginScreen({ onLogin }: { onLogin: () => void }) {
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [show, setShow] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -83,7 +84,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username, password }),
       })
       if (!res.ok) {
         setError('Incorrect password. Please try again.')
@@ -114,6 +115,24 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 shadow-sm" style={{ border: '1px solid var(--gray-200)' }}>
+          <label className="block text-xs font-heading font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>
+            Username
+          </label>
+          <input
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            placeholder="Enter admin username"
+            className="w-full px-4 py-3 rounded-xl text-sm outline-none mb-4"
+            style={{
+              border: '1.5px solid var(--gray-200)',
+              fontFamily: 'var(--font-open-sans)',
+              color: 'var(--dark)',
+              background: 'var(--off-white)',
+            }}
+            required
+            autoComplete="username"
+          />
           <label className="block text-xs font-heading font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>
             Password
           </label>
