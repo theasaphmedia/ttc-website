@@ -36,9 +36,9 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const pathname = usePathname()
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLDivElement>(null)
   const isHome = pathname === '/'
 
   useEffect(() => {
@@ -49,8 +49,8 @@ export function Navbar() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false)
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null)
       }
     }
     document.addEventListener('mousedown', handler)
@@ -87,12 +87,12 @@ export function Navbar() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav ref={navRef} className="hidden lg:flex items-center gap-1">
               {NAV_LINKS.map((link) =>
                 link.children ? (
-                  <div key={link.label} className="relative" ref={dropdownRef}>
+                  <div key={link.label} className="relative">
                     <button
-                      onClick={() => setDropdownOpen((v) => !v)}
+                      onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
                       className={cn(
                         'inline-flex items-center gap-1 px-4 py-2 rounded-full text-sm font-heading font-semibold transition-all duration-200',
                         solidBg
@@ -103,16 +103,16 @@ export function Navbar() {
                       {link.label}
                       <ChevronDown
                         size={14}
-                        className={cn('transition-transform duration-200', dropdownOpen && 'rotate-180')}
+                        className={cn('transition-transform duration-200', openDropdown === link.label && 'rotate-180')}
                       />
                     </button>
-                    {dropdownOpen && (
-                      <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2">
+                    {openDropdown === link.label && (
+                      <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden py-2">
                         {link.children.map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
-                            onClick={() => setDropdownOpen(false)}
+                            onClick={() => setOpenDropdown(null)}
                             className="block px-4 py-2.5 text-sm font-heading font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-colors"
                           >
                             {child.label}
