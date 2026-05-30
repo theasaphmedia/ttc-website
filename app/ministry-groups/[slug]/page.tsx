@@ -12,8 +12,9 @@ export function generateStaticParams() {
   return MINISTRY_GROUPS.map(g => ({ slug: g.slug }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const group = getGroupBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const group = getGroupBySlug(slug)
   if (!group) return { title: 'Not Found' }
   return {
     title: `${group.name} — The Transformation Camp`,
@@ -21,8 +22,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function GroupPage({ params }: { params: { slug: string } }) {
-  const group = getGroupBySlug(params.slug)
+export default async function GroupPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const group = getGroupBySlug(slug)
   if (!group) notFound()
 
   return (
