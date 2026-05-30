@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Calendar, Clock, MapPin, Wifi, ChevronRight } from 'lucide-react'
 import { getNextServiceDates, formatServiceDate, getCountdown } from '@/lib/schedule'
@@ -164,8 +164,107 @@ function MagneticCTA({ href, style, className, children, external }: { href: str
   )
 }
 
+interface SpecialEvent {
+  id: string
+  title: string
+  date: string
+  time: string
+  description?: string
+  type: string
+  is_online: boolean
+  location?: string
+  link?: string
+  flyer_url?: string
+}
+
+const EVENT_TYPE_COLORS: Record<string, string> = {
+  service: '#153093',
+  ingathering: '#f7931e',
+  special: '#22b573',
+  meeting: '#4ea8f9',
+  conference: '#9333ea',
+  outreach: '#ef4444',
+}
+
+function SpecialEventCard({ event }: { event: SpecialEvent }) {
+  const color = EVENT_TYPE_COLORS[event.type] ?? '#153093'
+  const dateObj = new Date(event.date)
+  const day = dateObj.toLocaleDateString('en-GB', { day: 'numeric' })
+  const month = dateObj.toLocaleDateString('en-GB', { month: 'short' })
+  const year = dateObj.toLocaleDateString('en-GB', { year: 'numeric' })
+
+  return (
+    <div
+      className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+      style={{ border: '1px solid var(--gray-200)', background: 'white' }}
+    >
+      {event.flyer_url ? (
+        <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+          <img src={event.flyer_url} alt={event.title} className="w-full h-full object-cover" />
+          <div className="absolute top-3 left-3">
+            <span
+              className="px-2 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-wider"
+              style={{ background: color }}
+            >
+              {event.type}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div className="relative h-28 flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)` }}>
+          <div className="text-center">
+            <p className="font-heading font-black text-white text-4xl leading-none">{day}</p>
+            <p className="font-heading font-bold text-white text-sm uppercase tracking-widest">{month} {year}</p>
+          </div>
+          <div
+            className="absolute top-3 left-3 px-2 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-wider"
+            style={{ background: 'rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.3)' }}
+          >
+            {event.type}
+          </div>
+        </div>
+      )}
+      <div className="p-5">
+        <h3 className="font-heading font-black text-base mb-1" style={{ color: 'var(--dark)' }}>{event.title}</h3>
+        <p className="text-xs font-heading font-bold mb-1" style={{ color }}>
+          {dateObj.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · {event.time}
+        </p>
+        {(event.location || event.is_online) && (
+          <p className="text-xs mb-2" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+            {event.is_online ? '🌐 Online' : `📍 ${event.location}`}
+          </p>
+        )}
+        {event.description && (
+          <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+            {event.description}
+          </p>
+        )}
+        {event.link && (
+          <a
+            href={event.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 mt-3 text-xs font-heading font-bold transition-opacity hover:opacity-75"
+            style={{ color }}
+          >
+            Join Event →
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function ProgramsPage() {
   const upcomingDates = getNextServiceDates(6)
+  const [specialEvents, setSpecialEvents] = useState<SpecialEvent[]>([])
+
+  useEffect(() => {
+    fetch('/api/events')
+      .then(r => r.json())
+      .then(d => setSpecialEvents(d.events ?? []))
+      .catch(() => {/* silent */})
+  }, [])
 
   return (
     <>
@@ -278,6 +377,24 @@ export default function ProgramsPage() {
           </p>
         </div>
       </section>
+
+      {/* Special Events */}
+      {specialEvents.length > 0 && (
+        <section className="section-pad" style={{ background: 'var(--off-white)' }}>
+          <div className="container-ttc">
+            <div className="text-center mb-12">
+              <span className="section-label">Don&apos;t Miss</span>
+              <h2 className="section-title">Special <span className="text-gradient-blue">Events</span></h2>
+              <p className="mt-3 text-base max-w-xl mx-auto" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                Upcoming special programmes, conferences, and gatherings.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {specialEvents.map(ev => <SpecialEventCard key={ev.id} event={ev} />)}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #153093 0%, #0f2270 100%)' }}>
