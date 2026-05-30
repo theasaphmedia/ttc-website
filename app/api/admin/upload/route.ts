@@ -3,14 +3,14 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 
-function isAuthorized(): boolean {
-  const cookieStore = cookies()
+async function isAuthorized(): Promise<boolean> {
+  const cookieStore = await cookies()
   const token = cookieStore.get('ttc_admin')?.value
   return token === process.env.ADMIN_PASSWORD
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAuthorized()) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!await isAuthorized()) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const formData = await req.formData()
   const file = formData.get('file') as File | null

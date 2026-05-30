@@ -43,6 +43,19 @@ const TYPE_COLORS: Record<string, string> = {
   outreach: '#ef4444',
 }
 
+// ─── Character Counter ────────────────────────────────────────────────────────
+function CharCounter({ value, max, warn }: { value: string; max: number; warn?: number }) {
+  const count = value.length
+  const warnAt = warn ?? Math.floor(max * 0.8)
+  const color = count > max ? '#dc2626' : count >= warnAt ? '#f7931e' : 'var(--text-muted)'
+  return (
+    <span className="text-[11px] font-heading font-bold tabular-nums" style={{ color }}>
+      {count}/{max}
+      {count > max && ' — over limit!'}
+    </span>
+  )
+}
+
 function Badge({ type }: { type: string }) {
   const color = TYPE_COLORS[type] ?? '#6b7280'
   return (
@@ -221,8 +234,11 @@ function AddEventForm({ onAdded }: { onAdded: () => void }) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="sm:col-span-2">
-          <label className="block text-xs font-heading font-bold uppercase tracking-widest mb-1.5" style={{ color: 'var(--text-muted)' }}>Event Title *</label>
-          <input className={inputClass} style={inputStyle} placeholder="e.g. Quarterly Ingathering" value={form.title} onChange={e => set('title', e.target.value)} required />
+          <div className="flex items-center justify-between mb-1.5">
+            <label className="block text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Event Title *</label>
+            <CharCounter value={form.title} max={60} />
+          </div>
+          <input className={inputClass} style={inputStyle} placeholder="e.g. Quarterly Ingathering" value={form.title} onChange={e => set('title', e.target.value)} required maxLength={80} />
         </div>
 
         <div>
@@ -253,14 +269,20 @@ function AddEventForm({ onAdded }: { onAdded: () => void }) {
         </div>
 
         <div className="sm:col-span-2">
-          <label className="block text-xs font-heading font-bold uppercase tracking-widest mb-1.5" style={{ color: 'var(--text-muted)' }}>Description</label>
+          <div className="flex items-center justify-between mb-1.5">
+            <label className="block text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Description</label>
+            <CharCounter value={form.description} max={300} warn={200} />
+          </div>
           <textarea
             className="w-full px-4 py-2.5 rounded-xl text-sm outline-none resize-none"
             style={{ ...inputStyle, minHeight: '80px' }}
-            placeholder="Brief description of the event..."
+            placeholder="Brief description of the event... (first 120 characters show on the card)"
             value={form.description}
             onChange={e => set('description', e.target.value)}
           />
+          <p className="text-[10px] mt-1" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+            First 120 characters show as preview on the Programs page.
+          </p>
         </div>
 
         <div className="sm:col-span-2 flex items-center gap-3">
@@ -367,7 +389,10 @@ function AddDevotionalForm({ onAdded }: { onAdded: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-xs font-heading font-bold uppercase tracking-widest mb-1.5" style={{ color: 'var(--text-muted)' }}>Title *</label>
+        <div className="flex items-center justify-between mb-1.5">
+          <label className="block text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Title *</label>
+          <CharCounter value={form.title} max={80} />
+        </div>
         <input className={inputClass} style={inputStyle} placeholder="e.g. Walking in Purpose" value={form.title} onChange={e => set('title', e.target.value)} required />
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
