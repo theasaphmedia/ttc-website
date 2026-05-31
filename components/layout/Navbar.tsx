@@ -18,7 +18,6 @@ const NAV_LINKS = [
     href: '#',
     children: [
       { label: 'Blog & Devotionals', href: '/devotionals' },
-      { label: 'Upcoming Events', href: '/programs#events' },
     ],
   },
   { label: 'Contact', href: '/contact' },

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { BookOpen, ChevronRight, Calendar, User, Search } from 'lucide-react'
+import { BookOpen, ChevronRight, Calendar, User, Search, Share2 } from 'lucide-react'
 import { WaveDivider } from '@/components/ui/WaveDivider'
 import { BrandCurves } from '@/components/ui/BrandCurves'
 import { FloatingOrbs } from '@/components/ui/FloatingOrbs'
@@ -31,6 +31,7 @@ function DevotionalCard({ dv, featured = false }: { dv: Devotional; featured?: b
         className="rounded-3xl overflow-hidden"
         style={{ background: 'linear-gradient(135deg, #153093 0%, #0f2270 100%)', border: '1px solid rgba(255,255,255,0.1)' }}
       >
+
         <div className="p-8 md:p-10">
           <div className="flex items-center gap-2 mb-4">
             <span
@@ -51,15 +52,24 @@ function DevotionalCard({ dv, featured = false }: { dv: Devotional; featured?: b
           <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.78)', fontFamily: 'var(--font-open-sans)' }}>
             {expanded ? dv.body : preview}{!expanded && hasMore ? '...' : ''}
           </p>
-          {hasMore && (
-            <button
-              onClick={() => setExpanded(e => !e)}
+          <div className="flex flex-wrap gap-3 mt-2">
+            <Link
+              href={`/devotionals/${dv.id}`}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-heading font-bold text-sm transition-all hover:opacity-90 active:scale-[0.98]"
               style={{ background: '#f7931e', color: 'white' }}
             >
-              {expanded ? 'Read Less' : 'Read Full Devotional'}
-            </button>
-          )}
+              Read Full Devotional →
+            </Link>
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(`📖 ${dv.title} — The Transformation Camp\n\n${typeof window !== 'undefined' ? window.location.origin : 'https://ttconline.org'}/devotionals/${dv.id}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-heading font-bold text-sm text-white transition-all hover:opacity-90"
+              style={{ background: '#25D366' }}
+            >
+              <Share2 size={14} /> Share
+            </a>
+          </div>
           <div className="flex items-center gap-4 mt-6 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
             <div className="flex items-center gap-1.5 text-xs" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'var(--font-open-sans)' }}>
               <User size={12} />{dv.author}
@@ -89,15 +99,13 @@ function DevotionalCard({ dv, featured = false }: { dv: Devotional; featured?: b
       <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
         {expanded ? dv.body : preview}{!expanded && hasMore ? '...' : ''}
       </p>
-      {hasMore && (
-        <button
-          onClick={() => setExpanded(e => !e)}
-          className="text-xs font-heading font-bold transition-opacity hover:opacity-70"
-          style={{ color: '#153093' }}
-        >
-          {expanded ? 'Read Less ↑' : 'Read More →'}
-        </button>
-      )}
+      <Link
+        href={`/devotionals/${dv.id}`}
+        className="text-xs font-heading font-bold transition-opacity hover:opacity-70"
+        style={{ color: '#153093' }}
+      >
+        Read Full →
+      </Link>
       <div className="flex items-center gap-4 mt-4 pt-4" style={{ borderTop: '1px solid var(--gray-100)' }}>
         <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
           <User size={11} />{dv.author}
