@@ -13,13 +13,7 @@ const NAV_LINKS = [
   { label: 'Ministry Groups', href: '/ministry-groups' },
   { label: 'Sermons', href: '/sermons' },
   { label: 'Programs', href: '/programs' },
-  {
-    label: 'Blog & Events',
-    href: '#',
-    children: [
-      { label: 'Blog & Devotionals', href: '/devotionals' },
-    ],
-  },
+  { label: 'Blog & Devotionals', href: '/devotionals' },
   { label: 'Contact', href: '/contact' },
   {
     label: 'More',
