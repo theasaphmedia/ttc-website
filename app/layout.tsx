@@ -4,6 +4,7 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { CursorGlow } from '@/components/ui/CursorGlow'
+import { CookieConsent } from '@/components/ui/CookieConsent'
 import { Analytics } from '@vercel/analytics/react'
 
 /* ─── Google Fonts ────────────────────────────────────────────────── */
@@ -108,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
         <Analytics />
       </body>
     </html>
