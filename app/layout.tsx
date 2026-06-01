@@ -1,11 +1,14 @@
 import type { Metadata, Viewport } from 'next'
 import { Montserrat, Open_Sans } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { CursorGlow } from '@/components/ui/CursorGlow'
 import { CookieConsent } from '@/components/ui/CookieConsent'
 import { Analytics } from '@vercel/analytics/react'
+
+const GA_ID = 'G-9MB2RY2M96'
 
 /* ─── Google Fonts ────────────────────────────────────────────────── */
 const montserrat = Montserrat({
@@ -111,6 +114,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <CookieConsent />
         <Analytics />
+        {/* Google Analytics GA4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
       </body>
     </html>
   )
