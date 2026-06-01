@@ -206,7 +206,7 @@ export function Footer() {
             >
               Built with &hearts; by{' '}
               <a
-                href="https://theasaphmedia.com"
+                href="https://solomonstephen.com/tai-digital"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-link"
