@@ -19,6 +19,7 @@ const NAV_LINKS = [
     label: 'More',
     href: '#',
     children: [
+      { label: 'Training & Empowerment', href: '/training' },
       { label: 'Circle Groups', href: '/circle-groups' },
       { label: 'Transformation In Your City', href: '/tic' },
       { label: 'Quick Links', href: '/quick-links' },

@@ -25,6 +25,7 @@ const QUICK_LINKS = [
 const MINISTRY_LINKS = [
   { label: 'Ministry Groups', href: '/ministry-groups' },
   { label: 'Blog & Devotionals', href: '/devotionals' },
+  { label: 'Training & Empowerment', href: '/training' },
   { label: 'Circle Groups', href: '/circle-groups' },
   { label: 'TIC -- Transform Your City', href: '/tic' },
   { label: 'Sermons', href: '/sermons' },
