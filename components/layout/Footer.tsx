@@ -195,6 +195,10 @@ export function Footer() {
               <span style={{ color: 'rgba(255,255,255,0.45)' }}>
                 An expression of Binah Church International
               </span>
+              {' '}&middot;{' '}
+              <Link href="/privacy" className="footer-link" style={{ color: 'rgba(255,255,255,0.35)' }}>
+                Privacy Policy
+              </Link>
             </p>
             <p
               className="text-xs"
