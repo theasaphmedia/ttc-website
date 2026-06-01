@@ -7,6 +7,7 @@ import { UpcomingPrograms } from '@/components/home/UpcomingPrograms'
 import { MinistryGroupsTeaser } from '@/components/home/MinistryGroupsTeaser'
 import { MusicSection } from '@/components/home/MusicSection'
 import { CTABanner } from '@/components/home/CTABanner'
+import { NewsletterSection } from '@/components/home/NewsletterSection'
 
 export const metadata: Metadata = {
   title: 'The Transformation Camp — The Place of Your Making',
@@ -24,6 +25,7 @@ export default function HomePage() {
       <UpcomingPrograms />
       <MinistryGroupsTeaser />
       <MusicSection />
+      <NewsletterSection />
       <CTABanner />
     </>
   )
