@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {
   LogOut, Plus, Trash2, Calendar, BookOpen, Users,
   Upload, Loader2, CheckCircle2, AlertCircle, Eye, EyeOff, X,
-  HandHeart, Send, TrendingUp
+  HandHeart, Send, TrendingUp, Mail, UserX, RefreshCw
 } from 'lucide-react'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -31,7 +31,7 @@ interface Devotional {
   published_date: string
 }
 
-type Tab = 'events' | 'devotionals' | 'giving' | 'broadcast'
+type Tab = 'events' | 'devotionals' | 'giving' | 'broadcast' | 'subscribers'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const EVENT_TYPES = ['service', 'ingathering', 'special', 'meeting', 'conference', 'outreach']
@@ -458,6 +458,134 @@ function AddDevotionalForm({ onAdded }: { onAdded: () => void }) {
   )
 }
 
+// ─── Subscribers Panel ────────────────────────────────────────────────────────
+interface Subscriber {
+  email: string
+  name: string
+  createdAt: string
+  emailBlacklisted: boolean
+}
+
+function SubscribersPanel() {
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([])
+  const [loading, setLoading] = useState(true)
+  const [deletingEmail, setDeletingEmail] = useState<string | null>(null)
+  const [search, setSearch] = useState('')
+  const [total, setTotal] = useState(0)
+
+  async function fetchSubscribers() {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/admin/subscribers')
+      if (res.ok) {
+        const d = await res.json()
+        setSubscribers(d.subscribers ?? [])
+        setTotal(d.total ?? 0)
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => { fetchSubscribers() }, [])
+
+  async function handleDelete(email: string) {
+    if (!confirm(`Remove ${email} from the newsletter list?`)) return
+    setDeletingEmail(email)
+    await fetch('/api/admin/subscribers', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    })
+    setSubscribers(s => s.filter(sub => sub.email !== email))
+    setDeletingEmail(null)
+  }
+
+  const filtered = subscribers.filter(s =>
+    s.email.toLowerCase().includes(search.toLowerCase()) ||
+    s.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+  return (
+    <div className="max-w-4xl">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-sm" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+            {total} total subscriber{total !== 1 ? 's' : ''} on your newsletter list
+          </p>
+        </div>
+        <button
+          onClick={fetchSubscribers}
+          className="flex items-center gap-1.5 text-xs font-heading font-bold px-3 py-1.5 rounded-lg transition-colors hover:bg-gray-100"
+          style={{ color: 'var(--text-muted)' }}
+        >
+          <RefreshCw size={13} /> Refresh
+        </button>
+      </div>
+
+      {/* Search */}
+      <div className="mb-4">
+        <input
+          className="w-full px-4 py-2.5 rounded-xl text-sm outline-none"
+          style={{ border: '1.5px solid var(--gray-200)', fontFamily: 'var(--font-open-sans)', color: 'var(--dark)', background: 'white' }}
+          placeholder="Search by name or email..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+      </div>
+
+      {loading ? (
+        <div className="flex items-center justify-center py-16">
+          <Loader2 size={24} className="animate-spin" style={{ color: '#153093' }} />
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="text-center py-16" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+          <Mail size={32} className="mx-auto mb-3 opacity-30" />
+          <p className="text-sm">{search ? 'No subscribers match your search.' : 'No subscribers yet.'}</p>
+        </div>
+      ) : (
+        <div className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid var(--gray-200)' }}>
+          <table className="w-full text-sm">
+            <thead>
+              <tr style={{ background: 'var(--off-white)', borderBottom: '1px solid var(--gray-200)' }}>
+                <th className="text-left px-4 py-3 text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Name</th>
+                <th className="text-left px-4 py-3 text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Email</th>
+                <th className="text-left px-4 py-3 text-xs font-heading font-bold uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Joined</th>
+                <th className="px-4 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((sub, i) => (
+                <tr key={sub.email} style={{ borderTop: i > 0 ? '1px solid var(--gray-200)' : undefined }}>
+                  <td className="px-4 py-3 font-heading font-bold text-sm" style={{ color: 'var(--dark)' }}>
+                    {sub.name || '—'}
+                  </td>
+                  <td className="px-4 py-3" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                    <a href={`mailto:${sub.email}`} style={{ color: '#153093' }}>{sub.email}</a>
+                  </td>
+                  <td className="px-4 py-3 text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+                    {sub.createdAt ? new Date(sub.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <button
+                      onClick={() => handleDelete(sub.email)}
+                      disabled={deletingEmail === sub.email}
+                      className="w-7 h-7 rounded-lg flex items-center justify-center ml-auto transition-colors hover:bg-red-50"
+                      style={{ color: '#dc2626' }}
+                    >
+                      {deletingEmail === sub.email ? <Loader2 size={13} className="animate-spin" /> : <UserX size={13} />}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── Main Admin Page ──────────────────────────────────────────────────────────
 interface GivingTx {
   id: string
@@ -730,6 +858,7 @@ export default function AdminPage() {
     { key: 'events' as Tab, label: 'Events', icon: Calendar, count: events.length },
     { key: 'devotionals' as Tab, label: 'Devotionals', icon: BookOpen, count: devotionals.length },
     { key: 'giving' as Tab, label: 'Giving', icon: HandHeart, count: null },
+    { key: 'subscribers' as Tab, label: 'Subscribers', icon: Mail, count: null },
     { key: 'broadcast' as Tab, label: 'Broadcast', icon: Send, count: null },
   ]
 
@@ -807,6 +936,17 @@ export default function AdminPage() {
           <div className="bg-white rounded-3xl p-6" style={{ border: '1px solid var(--gray-200)' }}>
             <h2 className="font-heading font-black text-lg mb-6" style={{ color: 'var(--dark)' }}>💰 Giving Transactions</h2>
             <GivingDashboard />
+          </div>
+        )}
+
+        {/* Subscribers tab — full width */}
+        {tab === 'subscribers' && (
+          <div className="bg-white rounded-3xl p-6" style={{ border: '1px solid var(--gray-200)' }}>
+            <h2 className="font-heading font-black text-lg mb-2" style={{ color: 'var(--dark)' }}>✉️ Newsletter Subscribers</h2>
+            <p className="text-sm mb-6" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+              Everyone who has subscribed to TTC updates. Use Broadcast to send them an email.
+            </p>
+            <SubscribersPanel />
           </div>
         )}
 
