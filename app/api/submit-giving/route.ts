@@ -6,12 +6,14 @@ import { verifyPaystackTransaction } from '@/lib/paystack'
 export async function POST(req: NextRequest) {
   try {
     const { reference } = (await req.json()) as { reference: string }
+    console.log('[submit-giving] reference received:', reference)
 
     if (!reference) {
       return NextResponse.json({ error: 'Missing reference' }, { status: 400 })
     }
 
     const tx = await verifyPaystackTransaction(reference)
+    console.log('[submit-giving] paystack verify result:', JSON.stringify(tx))
 
     if (tx.status !== 'success') {
       return NextResponse.json({ error: 'Transaction not successful' }, { status: 400 })
@@ -39,10 +41,11 @@ export async function POST(req: NextRequest) {
     })
 
     if (error) {
-      console.error('Supabase giving insert error:', error)
-      return NextResponse.json({ error: 'Failed to record giving' }, { status: 500 })
+      console.error('[submit-giving] Supabase insert error:', JSON.stringify(error))
+      return NextResponse.json({ error: 'Failed to record giving', detail: error.message }, { status: 500 })
     }
 
+    console.log('[submit-giving] Successfully recorded transaction')
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('submit-giving error:', err)
