@@ -129,11 +129,17 @@ export function GivingForm() {
         label: `TTC ${selectedCat.label}`,
         callback: (response: { reference: string }) => {
           clearTimeout(safetyTimer)
+          console.log('[giving] payment callback fired, reference:', response.reference)
           fetch('/api/submit-giving', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ reference: response.reference }),
-          }).catch(() => {/* silent — payment succeeded regardless */})
+          }).then(async (res) => {
+            const data = await res.json()
+            console.log('[giving] submit-giving response:', JSON.stringify(data))
+          }).catch((err) => {
+            console.error('[giving] submit-giving fetch error:', err)
+          })
           setStatus('success')
           setForm({ name: '', email: '', phone: '', amount: '', note: '' })
         },
