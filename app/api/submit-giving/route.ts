@@ -30,9 +30,9 @@ export async function POST(req: NextRequest) {
     }
 
     const { error } = await supabase.from('giving_transactions').insert({
-      name: `${tx.customer.first_name} ${tx.customer.last_name}`.trim(),
+      name: `${tx.customer.first_name} ${tx.customer.last_name}`.trim() || tx.customer.email,
       email: tx.customer.email,
-      amount: tx.amount / 100,
+      amount: tx.amount, // store in kobo as INTEGER
       category: (tx.metadata?.category as string) ?? 'offering',
       paystack_reference: reference,
       status: 'success',

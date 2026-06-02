@@ -626,10 +626,10 @@ function GivingDashboard() {
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Total Received', value: grandTotal, color: '#153093', bg: 'rgba(21,48,147,0.06)' },
-          { label: 'Offering', value: totals['offering'] ?? 0, color: '#f7931e', bg: 'rgba(247,147,30,0.06)' },
-          { label: 'Tithe', value: totals['tithe'] ?? 0, color: '#153093', bg: 'rgba(21,48,147,0.06)' },
-          { label: 'Building', value: totals['building'] ?? 0, color: '#22b573', bg: 'rgba(34,181,115,0.06)' },
+          { label: 'Total Received', value: grandTotal / 100, color: '#153093', bg: 'rgba(21,48,147,0.06)' },
+          { label: 'Offering', value: (totals['offering'] ?? 0) / 100, color: '#f7931e', bg: 'rgba(247,147,30,0.06)' },
+          { label: 'Tithe', value: (totals['tithe'] ?? 0) / 100, color: '#153093', bg: 'rgba(21,48,147,0.06)' },
+          { label: 'Building', value: (totals['building'] ?? 0) / 100, color: '#22b573', bg: 'rgba(34,181,115,0.06)' },
         ].map(c => (
           <div key={c.label} className="p-4 rounded-2xl" style={{ background: c.bg, border: `1px solid ${c.color}20` }}>
             <p className="text-xs font-heading font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--text-muted)' }}>{c.label}</p>
@@ -670,7 +670,7 @@ function GivingDashboard() {
                     </span>
                   </td>
                   <td className="px-4 py-3 font-heading font-black text-sm" style={{ color: '#22b573' }}>
-                    ₦{Number(tx.amount).toLocaleString()}
+                    ₦{(Number(tx.amount) / 100).toLocaleString()}
                   </td>
                   <td className="px-4 py-3">
                     <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase" style={{ background: tx.status === 'success' ? 'rgba(34,181,115,0.1)' : 'rgba(239,68,68,0.1)', color: tx.status === 'success' ? '#22b573' : '#dc2626' }}>
