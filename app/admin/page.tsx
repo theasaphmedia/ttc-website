@@ -31,7 +31,7 @@ interface Devotional {
   published_date: string
 }
 
-type Tab = 'events' | 'devotionals' | 'giving' | 'broadcast' | 'subscribers'
+type Tab = 'events' | 'devotionals' | 'giving' | 'broadcast' | 'subscribers' | 'analytics'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const EVENT_TYPES = ['service', 'ingathering', 'special', 'meeting', 'conference', 'outreach']
@@ -859,6 +859,7 @@ export default function AdminPage() {
     { key: 'devotionals' as Tab, label: 'Devotionals', icon: BookOpen, count: devotionals.length },
     { key: 'giving' as Tab, label: 'Giving', icon: HandHeart, count: null },
     { key: 'subscribers' as Tab, label: 'Subscribers', icon: Mail, count: null },
+    { key: 'analytics' as Tab, label: 'Analytics', icon: TrendingUp, count: null },
     { key: 'broadcast' as Tab, label: 'Broadcast', icon: Send, count: null },
   ]
 
@@ -936,6 +937,23 @@ export default function AdminPage() {
           <div className="bg-white rounded-3xl p-6" style={{ border: '1px solid var(--gray-200)' }}>
             <h2 className="font-heading font-black text-lg mb-6" style={{ color: 'var(--dark)' }}>💰 Giving Transactions</h2>
             <GivingDashboard />
+          </div>
+        )}
+
+        {/* Analytics tab — full width */}
+        {tab === 'analytics' && (
+          <div className="bg-white rounded-3xl p-6" style={{ border: '1px solid var(--gray-200)' }}>
+            <h2 className="font-heading font-black text-lg mb-2" style={{ color: 'var(--dark)' }}>📊 Site Analytics</h2>
+            <p className="text-sm mb-6" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-open-sans)' }}>
+              Live visitor data and traffic insights for ttconline.org — powered by Google Analytics.
+            </p>
+            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--gray-200)' }}>
+              <iframe
+                src="https://datastudio.google.com/embed/reporting/29a16c19-edf0-430c-93e9-3dc9b816ff55/page/fG3zF"
+                style={{ width: '100%', height: '600px', border: 'none' }}
+                allowFullScreen
+              />
+            </div>
           </div>
         )}
 
